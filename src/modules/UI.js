@@ -1,4 +1,4 @@
-import { Sidebar } from '@/components/sidebar/Sidebar'
+import { Sidebar } from '@/components/sidebar/Sidebar.js'
 
 export const UI = (() => {
   const init = () => {

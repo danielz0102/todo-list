@@ -2,4 +2,13 @@
   flex: 0 1 350px;
   background-color: #ccc;
   padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #999;
 }

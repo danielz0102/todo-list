@@ -1,4 +1,6 @@
 import './sidebar.css'
+import { Menu } from './components/menu/Menu.js'
+import { MyProjects } from './components/myProjects/MyProjects.js'
 
 function createSidebar() {
   const sidebar = document.createElement('aside')
@@ -7,10 +9,9 @@ function createSidebar() {
   const title = document.createElement('h2')
   title.textContent = 'Welcome'
 
-  const text = document.createElement('p')
-  text.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+  const divider = document.createElement('hr')
 
-  sidebar.append(title, text)
+  sidebar.append(title, Menu, divider, MyProjects)
 
   return sidebar
 }

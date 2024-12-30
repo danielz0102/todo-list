@@ -1,4 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Domine:wght@400..700&display=swap');
+:root {
+  --secondary-text: #474747;
+}
 
 *,
 *::before,
@@ -27,4 +29,9 @@ h2 {
   height: 100vh;
   display: flex;
   font-family: "Nunito Variable", sans-serif;
+}
+
+.icon {
+  width: 25px;
+  height: 25px;
 }
