@@ -6,11 +6,23 @@
   padding: 0;
 }
 
-button, input {
+button,
+input {
   font: inherit;
   color: inherit;
 }
 
 ul {
   list-style: none;
+}
+
+h1,
+h2 {
+  font-family: Helvetica, sans-serif;
+}
+
+#app {
+  height: 100vh;
+  display: flex;
+  font-family: system-ui;
 }
