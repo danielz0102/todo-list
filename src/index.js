@@ -2,6 +2,7 @@ import '@/index.css'
 import { format } from 'date-fns';
 import { toZonedTime } from 'date-fns-tz';
 import { Priority, Todo } from '@/modules/Todo'
+import { Project } from '@/modules/Project'
 
 function getCurrentDatetime() {
   const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone
@@ -17,4 +18,7 @@ const todo = new Todo({
   priority: Priority.HIGH
 })
 
-console.log(todo)
+const project = new Project('Personal')
+project.addTodo(todo)
+
+console.log(project)
