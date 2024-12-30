@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Domine:wght@400..700&display=swap');
+
 *,
 *::before,
 *::after {
@@ -18,11 +20,11 @@ ul {
 
 h1,
 h2 {
-  font-family: Helvetica, sans-serif;
+  font-family: "Rubik Variable", serif;
 }
 
 #app {
   height: 100vh;
   display: flex;
-  font-family: system-ui;
+  font-family: "Nunito Variable", sans-serif;
 }

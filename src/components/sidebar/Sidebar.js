@@ -7,7 +7,10 @@ function createSidebar() {
   const title = document.createElement('h2')
   title.textContent = 'Welcome'
 
-  sidebar.append(title)
+  const text = document.createElement('p')
+  text.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+
+  sidebar.append(title, text)
 
   return sidebar
 }
