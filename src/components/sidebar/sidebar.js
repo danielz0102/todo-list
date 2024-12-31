@@ -1,6 +1,6 @@
 import './sidebar.css'
-import { Menu } from './components/menu/Menu.js'
-import { MyProjects } from './components/myProjects/MyProjects.js'
+import { Menu } from './components/menu/menu.js'
+import { MyProjects } from './components/myProjects/myProjects.js'
 
 const Sidebar = document.createElement('aside')
 Sidebar.id = 'sidebar'

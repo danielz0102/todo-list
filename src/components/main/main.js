@@ -1,5 +1,5 @@
 import './main.css'
-import { Today } from './components/today/Today.js'
+import { Today } from '../../pages/today/today.js'
 
 const Main = document.createElement('main')
 

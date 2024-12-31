@@ -1,5 +1,5 @@
-import { Sidebar } from '@/pages/sidebar/Sidebar.js'
-import { Main } from '@/pages/main/Main.js'
+import { Sidebar } from '@/components/sidebar/sidebar.js'
+import { Main } from '@/components/main/main.js'
 
 export const UI = (() => {
   const init = () => {
