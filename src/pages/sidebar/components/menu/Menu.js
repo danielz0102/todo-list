@@ -18,20 +18,16 @@ function createItem(text, iconSrc) {
   return item
 }
 
-function createMenu() {
-  const nav = document.createElement('nav')
-  nav.classList.add('menu')
+const Menu = document.createElement('Menu')
+Menu.classList.add('menu')
 
-  const items = {
-    today: createItem('Today', todayIcon),
-    week: createItem('This Week', weekIcon),
-    all: createItem('All Projects', allIcon),
-    add: createItem('Add Project', addIcon)
-  }
-
-  Object.values(items).forEach(icon => nav.appendChild(icon))
-
-  return nav
+const items = {
+  today: createItem('Today', todayIcon),
+  week: createItem('This Week', weekIcon),
+  all: createItem('All Projects', allIcon),
+  add: createItem('Add Project', addIcon)
 }
 
-export const Menu = createMenu()
+Object.values(items).forEach(icon => Menu.appendChild(icon))
+
+export { Menu }
