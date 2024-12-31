@@ -4,5 +4,7 @@ import '@fontsource-variable/rubik'
 import '@fontsource-variable/nunito'
 import '@/index.css'
 import { UI } from '@/modules/UI.js'
+import { Storage } from '@/modules/Storage.js'
 
+Storage.init()
 UI.init()
