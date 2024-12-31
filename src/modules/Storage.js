@@ -9,6 +9,10 @@ export const Storage = (() => {
   }
 
   const getProjects = () => {
+    if (localStorage.length === 0) {
+      return []
+    }
+
     return JSON.parse(localStorage.getItem('projects'))
   }
 

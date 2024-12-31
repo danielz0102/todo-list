@@ -1,0 +1,16 @@
+.menu__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  background-color: inherit;
+  border: none;
+  border-radius: 8px;
+  padding: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #fff;
+  }
+}

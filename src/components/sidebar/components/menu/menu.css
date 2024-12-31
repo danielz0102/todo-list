@@ -3,19 +3,13 @@
   flex-direction: column;
 }
 
-.menu__item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.menu__title {
+  font-weight: bold;
+  color: var(--secondary-text);
+  margin-bottom: 4px;
+}
 
-  background-color: inherit;
-  border: none;
-  border-radius: 8px;
-  padding: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #fff;
-  }
+.menu__fallback {
+  font-style: italic;
+  color: var(--secondary-text);
 }
