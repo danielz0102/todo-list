@@ -1,21 +1,21 @@
 import './menu.css'
 
 export function createMenu({ 
-  title = '',
+  title = null,
   items = [],
-  fallback = ''
+  fallback = null
 }) {
   const Menu = document.createElement('nav')
   Menu.classList.add('menu')
 
-  if (title !== '') {
+  if (title) {
     const h3 = document.createElement('h3')
     h3.classList.add('menu__title')
     h3.textContent = title
     Menu.appendChild(h3)
   }
 
-  if (fallback !== '') {
+  if (fallback) {
     const p = document.createElement('p')
     p.classList.add('menu__fallback')
     p.textContent = fallback
