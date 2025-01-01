@@ -4,27 +4,31 @@ export const Storage = (() => {
   const init = () => {
     if (localStorage.length === 0) {
       const initProject = new Project('My First Project')
-      localStorage.setItem('projects', JSON.stringify([initProject]))
+      saveProjects([initProject])
     }
   }
 
-  const getProjects = () => {
-    if (localStorage.length === 0) {
-      return []
-    }
+  const saveProjects = projects => {
+    localStorage.setItem('projects', JSON.stringify(projects))
+  }
 
-    return JSON.parse(localStorage.getItem('projects'))
+  const getProjects = () => {
+    const rawData = JSON.parse(localStorage.getItem('projects')) || []
+
+    return rawData.map(project => {
+      return new Project(project.name)
+    })
   }
 
   const addProject = project => {
     const projects = getProjects()
     projects.push(project)
-    localStorage.setItem('projects', JSON.stringify(projects))
+    saveProjects(projects)
   }
 
   const removeProject = project => {
     const projects = getProjects().filter(p => p !== project)
-    localStorage.setItem('projects', JSON.stringify(projects))
+    saveProjects(projects)
   }
 
   return { init, getProjects, addProject, removeProject }
