@@ -1,5 +1,5 @@
 import './all-projects.css'
-import { createProjectCard } from './components/projectCard/projectCard.js'
+import { createProjectCard } from '../../components/projectCard/projectCard.js'
 import { Storage } from '@/modules/Storage.js'
 import { createFallback } from '@/components/fallback/fallback.js'
 

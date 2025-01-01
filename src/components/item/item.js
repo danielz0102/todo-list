@@ -1,4 +1,4 @@
-import './items.css'
+import './item.css'
 
 export function createItem({
   text,

@@ -1,6 +1,6 @@
 import './project-card.css'
 import { createFallback } from '@/components/fallback/fallback.js'
-import { createItem } from '@/components/sidebar/components/items/items.js'
+import { createItem } from '@/components/item/item.js'
 import addIconWhite from '@/assets/icons/add-white.svg'
 import addIcon from '@/assets/icons/add.svg'
 

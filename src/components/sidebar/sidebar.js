@@ -1,6 +1,6 @@
 import './sidebar.css'
-import { createItem } from './components/items/items.js'
-import { createMenu } from './components/menu/menu.js'
+import { createItem } from '@/components/item/item.js'
+import { createMenu } from '@/components/menu/menu.js'
 import { Storage } from '@/modules/Storage.js'
 import { renderFunctions } from '@/components/main/main.js'
 import todayIcon from '@/assets/icons/today.svg'
