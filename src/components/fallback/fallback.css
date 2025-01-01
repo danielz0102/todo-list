@@ -1,0 +1,4 @@
+.fallback {
+  font-style: italic;
+  color: var(--secondary-text);
+}

@@ -8,8 +8,3 @@
   color: var(--secondary-text);
   margin-bottom: 4px;
 }
-
-.menu__fallback {
-  font-style: italic;
-  color: var(--secondary-text);
-}

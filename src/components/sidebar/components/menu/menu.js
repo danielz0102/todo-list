@@ -17,7 +17,7 @@ export function createMenu({
 
   if (fallback) {
     const p = document.createElement('p')
-    p.classList.add('menu__fallback')
+    p.classList.add('fallback')
     p.textContent = fallback
     Menu.appendChild(p)
   }

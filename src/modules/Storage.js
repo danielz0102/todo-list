@@ -13,10 +13,13 @@ export const Storage = (() => {
   }
 
   const getProjects = () => {
-    const rawData = JSON.parse(localStorage.getItem('projects')) || []
+    const rawData = JSON.parse(localStorage.getItem('projects')) ?? []
 
     return rawData.map(project => {
-      return new Project(project.name)
+      const newProject = new Project(project.name)
+      newProject.todos = project.todos ?? []
+
+      return newProject
     })
   }
 

@@ -4,7 +4,7 @@ export function createItem({
   text,
   iconSrc,
   clickHandler = null,
-  params = {}
+  params = {},
 }) {
   const item = document.createElement('button')
   item.classList.add('menu__item')

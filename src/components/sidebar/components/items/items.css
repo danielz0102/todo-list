@@ -14,3 +14,8 @@
     background-color: #fff;
   }
 }
+
+.menu__item--invert:hover {
+  background-color: #000;
+  color: #fff;
+}
