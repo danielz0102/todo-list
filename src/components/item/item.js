@@ -2,17 +2,12 @@ import './item.css'
 
 export function createItem({
   text,
-  iconSrc,
+  icon,
   clickHandler = null,
   params = {},
 }) {
   const item = document.createElement('button')
   item.classList.add('menu__item')
-
-  const icon = new Image()
-  icon.src = iconSrc
-  icon.classList.add('icon')
-  icon.alt = `${text} icon`
 
   item.append(icon, text)
 

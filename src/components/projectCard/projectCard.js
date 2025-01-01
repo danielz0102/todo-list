@@ -36,12 +36,5 @@ export function createProjectCard(project) {
     card.appendChild(fallback)
   }
 
-  const item = createItem({
-    text: 'Create a new todo',
-    iconSrc: addIcon,
-  })
-
-  card.appendChild(item)
-
   return card
 }

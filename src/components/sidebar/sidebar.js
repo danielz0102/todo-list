@@ -3,11 +3,7 @@ import { createItem } from '@/components/item/item.js'
 import { createMenu } from '@/components/menu/menu.js'
 import { Storage } from '@/modules/Storage.js'
 import { renderFunctions } from '@/components/main/main.js'
-import todayIcon from '@/assets/icons/today.svg'
-import allIcon from '@/assets/icons/all.svg'
-import weekIcon from '@/assets/icons/week.svg'
-import addIcon from '@/assets/icons/add.svg'
-import projectIcon from '@/assets/icons/project.svg'
+import { sidebarIcons } from './sidebarIcons.js'
 
 const Sidebar = document.createElement('aside')
 Sidebar.id = 'sidebar'
@@ -19,19 +15,19 @@ const divider = document.createElement('hr')
 
 const MainMenu = (() => {
   const mainItems = [
-    createItem({ 
+    createItem({
       text: 'Today',
-      iconSrc: todayIcon,
+      icon: sidebarIcons.today,
       clickHandler: renderFunctions.today
     }),
-    createItem({ 
+    createItem({
       text: 'This Week',
-      iconSrc: weekIcon,
+      icon: sidebarIcons.week,
       clickHandler: renderFunctions.thisWeek
     }),
-    createItem({ 
+    createItem({
       text: 'All Projects',
-      iconSrc: allIcon,
+      icon: sidebarIcons.all,
       clickHandler: renderFunctions.allProjects
     }),
   ]
@@ -48,14 +44,20 @@ const ProjectsMenu = (() => {
   }
 
   if (projects.length > 0) {
-    props.items = projects.map(project => 
-      createItem({ text: project.name, iconSrc: projectIcon })
+    props.items = projects.map(project =>
+      createItem({
+        text: project.name,
+        icon: sidebarIcons.project,
+      })
     )
   } else {
     props.fallback = 'No projects yet'
   }
 
-  props.items.push(createItem({ text: 'Add Project', iconSrc: addIcon }))
+  props.items.push(createItem({
+    text: 'Add Project',
+    icon: sidebarIcons.add,
+  }))
 
   return createMenu(props)
 })()
