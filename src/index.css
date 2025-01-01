@@ -25,6 +25,11 @@ h2 {
   font-family: "Rubik Variable", serif;
 }
 
+hr {
+  border: none;
+  border-top: 1px solid #999;
+}
+
 #app {
   height: 100vh;
   display: flex;
