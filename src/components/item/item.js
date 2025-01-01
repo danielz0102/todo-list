@@ -5,10 +5,11 @@ export function createItem({
   icon,
   clickHandler = null,
   params = {},
+  hoverColor = '#fff',
 }) {
   const item = document.createElement('button')
-  item.classList.add('menu__item')
-
+  item.classList.add('item')
+  item.style.setProperty('--hover-color', hoverColor)
   item.append(icon, text)
 
   if (clickHandler) {
