@@ -1,25 +1,21 @@
 import './menu.css'
+import { createFallback } from '@/components/fallback/fallback.js'
 
-export function createMenu({ 
+export function createMenu({
   title = null,
   items = [],
-  fallback = null
+  fallback = null,
+  wrapperType = 'nav'
 }) {
-  const Menu = document.createElement('nav')
+  const Menu = document.createElement(wrapperType)
   Menu.classList.add('menu')
 
   if (title) {
-    const h3 = document.createElement('h3')
-    h3.classList.add('menu__title')
-    h3.textContent = title
-    Menu.appendChild(h3)
+    Menu.appendChild(createTitle(title))
   }
 
-  if (fallback) {
-    const p = document.createElement('p')
-    p.classList.add('fallback')
-    p.textContent = fallback
-    Menu.appendChild(p)
+  if (fallback && items.length === 0) {
+    Menu.appendChild(createFallback(fallback))
   }
 
   if (items.length > 0) {
@@ -27,4 +23,12 @@ export function createMenu({
   }
 
   return Menu
+}
+
+function createTitle(title) {
+  const h3 = document.createElement('h3')
+  h3.classList.add('menu__title')
+  h3.textContent = title
+
+  return h3
 }
