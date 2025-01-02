@@ -3,22 +3,23 @@ import { createMenu } from '@/components/menu/menu.js'
 import { Storage } from '@/modules/Storage.js'
 import { renderFunctions } from '@/components/main/main.js'
 import { sidebarIcons } from './icons.js'
+import { Project } from '@/modules/Project.js'
 
 const MainMenu = (() => {
   const mainItems = [
     createItem({
       text: 'Today',
-      icon: sidebarIcons.today,
+      icon: sidebarIcons.today(),
       clickHandler: renderFunctions.today
     }),
     createItem({
       text: 'This Week',
-      icon: sidebarIcons.week,
+      icon: sidebarIcons.week(),
       clickHandler: renderFunctions.thisWeek
     }),
     createItem({
       text: 'All Projects',
-      icon: sidebarIcons.all,
+      icon: sidebarIcons.all(),
       clickHandler: renderFunctions.allProjects
     }),
   ]
@@ -38,17 +39,23 @@ const ProjectsMenu = (() => {
     props.items = projects.map(project =>
       createItem({
         text: project.name,
-        icon: sidebarIcons.project,
+        icon: sidebarIcons.project(),
       })
     )
   } else {
     props.fallback = 'No projects yet'
   }
 
-  props.items.push(createItem({
+  const addProjectItem = createItem({
     text: 'Add Project',
-    icon: sidebarIcons.add,
-  }))
+    icon: sidebarIcons.add(),
+    clickHandler: () => {
+      const newProject = new Project('New Project!')
+      Storage.addProject(newProject)
+    }
+  })
+
+  props.items.push(addProjectItem)
 
   return createMenu(props)
 })()
