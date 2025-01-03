@@ -2,7 +2,7 @@ import './all-projects.css'
 import { Storage } from '@/modules/Storage.js'
 import { createMenu } from '@/components/menu/menu.js'
 
-export function createAllProjectsSection() {
+export function createAllProjectsPage() {
   const AllProjects = document.createElement('div')
   AllProjects.id = 'allProjects'
 

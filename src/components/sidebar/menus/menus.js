@@ -1,26 +1,29 @@
 import { createItem } from '@/components/item/item.js'
 import { createMenu } from '@/components/menu/menu.js'
+import { renderPage } from '@/components/main/main.js'
 import { Storage } from '@/modules/Storage.js'
-import { renderFunctions } from '@/components/main/main.js'
-import { sidebarIcons } from './icons.js'
 import { Project } from '@/modules/Project.js'
+import { Today } from '@/pages/today/today.js'
+import { ThisWeek } from '@/pages/thisWeek/thisWeek.js'
+import { createAllProjectsPage } from '@/pages/allProjects/allProjects.js'
+import { sidebarIcons } from './icons.js'
 
 const MainMenu = (() => {
   const mainItems = [
     createItem({
       text: 'Today',
       icon: sidebarIcons.today(),
-      clickHandler: renderFunctions.today
+      clickHandler: () => renderPage(Today)
     }),
     createItem({
       text: 'This Week',
       icon: sidebarIcons.week(),
-      clickHandler: renderFunctions.thisWeek
+      clickHandler: () => renderPage(ThisWeek)
     }),
     createItem({
       text: 'All Projects',
       icon: sidebarIcons.all(),
-      clickHandler: renderFunctions.allProjects
+      clickHandler: () => renderPage(createAllProjectsPage())
     }),
   ]
 
@@ -51,7 +54,7 @@ const ProjectsMenu = (() => {
     document.querySelector('#projectsMenu').replaceChildren(...props.items)
 
     if (document.querySelector('#allProjects')) {
-      renderFunctions.allProjects()
+      renderPage(createAllProjectsPage())
     }
   }
 

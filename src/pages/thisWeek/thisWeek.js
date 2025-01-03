@@ -1,6 +1,6 @@
 import './this-week.css'
 
-const ThisWeek = document.createElement('section')
+const ThisWeek = document.createElement('div')
 ThisWeek.id = 'thisWeek'
 
 const title = document.createElement('h1')
