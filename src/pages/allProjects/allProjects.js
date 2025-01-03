@@ -16,7 +16,6 @@ export function createAllProjectsSection() {
   const lists = projects.map(project => createMenu({
     title: project.name,
     wrapperType: 'ul',
-    id: 'projectList',
   }))
 
   AllProjects.append(...lists)
