@@ -1,6 +1,6 @@
 import { createItem } from '@/components/item/item.js'
 import { createMenu } from '@/components/menu/menu.js'
-import { renderPage } from '@/components/main/main.js'
+import { Main } from '@/components/main/main.js'
 import { Storage } from '@/modules/Storage.js'
 import { Project } from '@/modules/Project.js'
 import { Today } from '@/pages/today/today.js'
@@ -14,17 +14,17 @@ const MainMenu = (() => {
     createItem({
       text: 'Today',
       icon: sidebarIcons.today(),
-      clickHandler: () => renderPage(Today)
+      clickHandler: () => Main.replaceChildren(Today)
     }),
     createItem({
       text: 'This Week',
       icon: sidebarIcons.week(),
-      clickHandler: () => renderPage(ThisWeek)
+      clickHandler: () => Main.replaceChildren(ThisWeek)
     }),
     createItem({
       text: 'All Projects',
       icon: sidebarIcons.all(),
-      clickHandler: () => renderPage(createAllProjectsPage())
+      clickHandler: () => Main.replaceChildren(createAllProjectsPage())
     }),
   ]
 
@@ -55,7 +55,7 @@ const ProjectsMenu = (() => {
     document.querySelector('#projectsMenu').replaceChildren(...props.items)
 
     if (document.querySelector('#allProjects')) {
-      renderPage(createAllProjectsPage())
+      Main.replaceChildren(createAllProjectsPage())
     }
   }
 
@@ -65,7 +65,7 @@ const ProjectsMenu = (() => {
         createItem({
           text: project.name,
           icon: sidebarIcons.project(),
-          clickHandler: () => renderPage(createProjectPage(project)),
+          clickHandler: () => Main.replaceChildren(createProjectPage(project)),
         })
       )
     } else {
