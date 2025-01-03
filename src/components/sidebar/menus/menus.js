@@ -6,6 +6,7 @@ import { Project } from '@/modules/Project.js'
 import { Today } from '@/pages/today/today.js'
 import { ThisWeek } from '@/pages/thisWeek/thisWeek.js'
 import { createAllProjectsPage } from '@/pages/allProjects/allProjects.js'
+import { createProjectPage } from '@/pages/project/project.js'
 import { sidebarIcons } from './icons.js'
 
 const MainMenu = (() => {
@@ -64,6 +65,7 @@ const ProjectsMenu = (() => {
         createItem({
           text: project.name,
           icon: sidebarIcons.project(),
+          clickHandler: () => renderPage(createProjectPage(project)),
         })
       )
     } else {

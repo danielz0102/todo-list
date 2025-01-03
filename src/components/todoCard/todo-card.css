@@ -1,0 +1,36 @@
+.todo-card {
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  padding: 8px;
+  width: 500px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  width: 1em;
+  height: 1em;
+  border: 1px solid var(--secondary-text);
+  border-radius: 50%;
+
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.5em;
+  height: 0.5em;
+  transform: scale(0);
+  box-shadow: inset 1em 1em #08d208;
+
+  /*Checkmark*/
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
