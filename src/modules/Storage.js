@@ -17,6 +17,7 @@ export const Storage = (() => {
 
     return rawData.map(project => {
       const newProject = new Project(project.name)
+      newProject.id = project.id
       newProject.todos = project.todos ?? []
 
       return newProject
@@ -30,9 +31,27 @@ export const Storage = (() => {
   }
 
   const removeProject = project => {
-    const projects = getProjects().filter(p => p !== project)
+    const projects = getProjects().filter(p => p.id !== project.id)
     saveProjects(projects)
   }
 
-  return { init, getProjects, addProject, removeProject }
+  const updateProject = project => {
+    const projects = getProjects().map(p => {
+      if (p.id === project.id) {
+        return project
+      }
+
+      return p
+    })
+
+    saveProjects(projects)
+  }
+
+  return { 
+    init,
+    getProjects,
+    addProject,
+    removeProject,
+    updateProject
+  }
 })()

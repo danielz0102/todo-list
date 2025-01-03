@@ -2,34 +2,27 @@ import './project.css'
 import { createTodoCard } from '@/components/todoCard/todoCard.js'
 import { createFallback } from '@/components/fallback/fallback.js'
 import { createIcon } from '@/components/icon/icon.js'
-import { Todo } from '@/modules/Todo.js'
-import addIconSrc from '@/assets/icons/add.svg'
 import { Main } from '@/components/main/main.js'
+import { Todo } from '@/modules/Todo.js'
+import { Storage } from '@/modules/Storage.js'
+import addIconSrc from '@/assets/icons/add.svg'
 
 export function createProjectPage(project) {
-  const Project = document.createElement('div')
-  Project.id = 'project'
+  const wrapper = document.createElement('div')
+  wrapper.id = 'project'
 
   const title = document.createElement('h1')
   title.textContent = project.name
 
-  const addIcon = createIcon({ src: addIconSrc, alt: 'Plus icon' })
+  const addTodoBtn = createAddTodoBtn(project)
 
-  const addTodoBtn = document.createElement('button')
-  addTodoBtn.classList.add('icon-btn')
-  addTodoBtn.appendChild(addIcon)
-  addTodoBtn.addEventListener('click', () => {
-    addTodo(project)
-    Main.replaceChildren(createProjectPage(project))
-  })
-
-  Project.append(title, addTodoBtn)
+  wrapper.append(title, addTodoBtn)
 
   if (!project.todos.length) {
     const fallback = createFallback('No todos yet')
-    Project.appendChild(fallback)
+    wrapper.appendChild(fallback)
 
-    return Project
+    return wrapper
   }
 
   const todos = document.createElement('section')
@@ -40,18 +33,28 @@ export function createProjectPage(project) {
     todos.appendChild(Card)
   })
 
-  Project.appendChild(todos)
+  wrapper.appendChild(todos)
 
-  return Project
+  return wrapper
 }
 
-function addTodo(project) {
-  project.addTodo(new Todo({
-    title: 'New todo!',
-    description: '',
-    dueDate: 'Today',
-    priority: 'High'
-  }))
+function createAddTodoBtn(project) {
+  const addIcon = createIcon({ src: addIconSrc, alt: 'Plus icon' })
 
-  console.log(project.todos)
+  const addTodoBtn = document.createElement('button')
+  addTodoBtn.classList.add('icon-btn')
+  addTodoBtn.appendChild(addIcon)
+  addTodoBtn.addEventListener('click', () => {
+    project.addTodo(new Todo({
+      title: 'New todo!',
+      description: '',
+      dueDate: 'Today',
+      priority: 'High'
+    }))
+
+    Storage.updateProject(project)
+    Main.replaceChildren(createProjectPage(project))
+  })
+
+  return addTodoBtn
 }
