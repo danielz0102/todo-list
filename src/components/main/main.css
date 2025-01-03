@@ -3,6 +3,8 @@ main {
   padding: 32px;
   overflow-y: auto;
   scrollbar-width: thin;
+
+  position: relative;
 }
 
 h1 {

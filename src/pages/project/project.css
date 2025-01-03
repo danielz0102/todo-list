@@ -3,3 +3,22 @@
   flex-direction: column;
   gap: 16px;
 }
+
+.icon-btn {
+  display: grid;
+  place-content: center;
+
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+
+  &:hover {
+    background-color: #fff;
+  }
+}

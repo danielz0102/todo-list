@@ -4,8 +4,7 @@ import { createProjectPage } from '@/pages/project/project.js'
 import { Storage } from '@/modules/Storage.js'
 
 function renderPage(page) {
-  Main.replaceChildren()
-  Main.appendChild(page)
+  Main.replaceChildren(page)
 }
 
 const Main = document.createElement('main')

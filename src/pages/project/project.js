@@ -1,7 +1,10 @@
 import './project.css'
 import { createTodoCard } from '@/components/todoCard/todoCard.js'
 import { createFallback } from '@/components/fallback/fallback.js'
+import { createIcon } from '@/components/icon/icon.js'
 import { Todo } from '@/modules/Todo.js'
+import addIconSrc from '@/assets/icons/add.svg'
+import { Main } from '@/components/main/main.js'
 
 export function createProjectPage(project) {
   const Project = document.createElement('div')
@@ -10,15 +13,17 @@ export function createProjectPage(project) {
   const title = document.createElement('h1')
   title.textContent = project.name
 
-  Project.append(title)
+  const addIcon = createIcon({ src: addIconSrc, alt: 'Plus icon' })
 
-  //dummy
-  project.addTodo(new Todo({
-    title: 'Create a new todo',
-    description: 'Click the button below to create a new todo',
-    dueDate: 'Today',
-    priority: 'High'
-  }))
+  const addTodoBtn = document.createElement('button')
+  addTodoBtn.classList.add('icon-btn')
+  addTodoBtn.appendChild(addIcon)
+  addTodoBtn.addEventListener('click', () => {
+    addTodo(project)
+    Main.replaceChildren(createProjectPage(project))
+  })
+
+  Project.append(title, addTodoBtn)
 
   if (!project.todos.length) {
     const fallback = createFallback('No todos yet')
@@ -38,4 +43,15 @@ export function createProjectPage(project) {
   Project.appendChild(todos)
 
   return Project
+}
+
+function addTodo(project) {
+  project.addTodo(new Todo({
+    title: 'New todo!',
+    description: '',
+    dueDate: 'Today',
+    priority: 'High'
+  }))
+
+  console.log(project.todos)
 }
