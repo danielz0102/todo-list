@@ -24,7 +24,7 @@ const MainMenu = (() => {
     }),
   ]
 
-  return createMenu({ items: mainItems })
+  return createMenu({ items: mainItems, id: 'mainMenu' })
 })()
 
 const ProjectsMenu = (() => {
@@ -32,30 +32,44 @@ const ProjectsMenu = (() => {
   const props = {
     title: 'My Projects',
     items: [],
-    fallback: ''
+    fallback: '',
+    id: 'projectsMenu',
   }
-
-  if (projects.length > 0) {
-    props.items = projects.map(project =>
-      createItem({
-        text: project.name,
-        icon: sidebarIcons.project(),
-      })
-    )
-  } else {
-    props.fallback = 'No projects yet'
-  }
-
   const addProjectItem = createItem({
     text: 'Add Project',
     icon: sidebarIcons.add(),
     clickHandler: () => {
-      const newProject = new Project('New Project!')
-      Storage.addProject(newProject)
+      Storage.addProject(new Project('New Project!'))
+      updateProjects()
     }
   })
 
-  props.items.push(addProjectItem)
+  getItems(projects)
+
+  function updateProjects() {
+    const projects = Storage.getProjects()
+    getItems(projects)
+    document.querySelector('#projectsMenu').replaceWith(createMenu(props))
+
+    if (document.querySelector('#allProjects')) {
+      renderFunctions.allProjects()
+    }
+  }
+
+  function getItems(projects) {
+    if (projects.length > 0) {
+      props.items = projects.map(project =>
+        createItem({
+          text: project.name,
+          icon: sidebarIcons.project(),
+        })
+      )
+    } else {
+      props.fallback = 'No projects yet'
+    }
+
+    props.items.push(addProjectItem)
+  }
 
   return createMenu(props)
 })()

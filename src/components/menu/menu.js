@@ -5,10 +5,12 @@ export function createMenu({
   title = null,
   items = [],
   fallback = null,
-  wrapperType = 'nav'
+  wrapperType = 'nav',
+  id = null
 }) {
   const Menu = document.createElement(wrapperType)
   Menu.classList.add('menu')
+  if (id) Menu.id = id
 
   if (title) {
     Menu.appendChild(createTitle(title))
