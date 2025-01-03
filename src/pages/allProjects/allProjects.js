@@ -3,7 +3,7 @@ import { Storage } from '@/modules/Storage.js'
 import { createMenu } from '@/components/menu/menu.js'
 
 export function createAllProjectsSection() {
-  const AllProjects = document.createElement('section')
+  const AllProjects = document.createElement('div')
   AllProjects.id = 'allProjects'
 
   const title = document.createElement('h1')

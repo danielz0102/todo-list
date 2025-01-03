@@ -35,3 +35,8 @@ hr {
   display: flex;
   font-family: "Nunito Variable", sans-serif;
 }
+
+.title {
+  font-weight: bold;
+  color: var(--secondary-text);
+}

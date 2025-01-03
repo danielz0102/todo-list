@@ -44,19 +44,18 @@ const ProjectsMenu = (() => {
     }
   })
 
-  getItems(projects)
-
   function updateProjects() {
     const projects = Storage.getProjects()
-    getItems(projects)
-    document.querySelector('#projectsMenu').replaceWith(createMenu(props))
+    setItems(projects)
+
+    document.querySelector('#projectsMenu').replaceChildren(...props.items)
 
     if (document.querySelector('#allProjects')) {
       renderFunctions.allProjects()
     }
   }
 
-  function getItems(projects) {
+  function setItems(projects) {
     if (projects.length > 0) {
       props.items = projects.map(project =>
         createItem({
@@ -67,11 +66,14 @@ const ProjectsMenu = (() => {
     } else {
       props.fallback = 'No projects yet'
     }
-
-    props.items.push(addProjectItem)
   }
 
-  return createMenu(props)
+  setItems(projects)
+
+  const menu = createMenu(props)
+  menu.appendChild(addProjectItem)
+
+  return menu
 })()
 
 export { MainMenu, ProjectsMenu }
