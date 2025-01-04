@@ -10,6 +10,14 @@ export function createProjectPage(project) {
   wrapper.id = 'project'
 
   const title = document.createElement('h1')
+
+  if (!project) {
+    title.textContent = 'No project found'
+    wrapper.appendChild(title)
+
+    return wrapper
+  }
+
   title.textContent = project.name
 
   const addTodoBtn = createAddTodoBtn(project, wrapper)
