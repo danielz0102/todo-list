@@ -12,8 +12,8 @@ export class Project {
     Storage.updateProject(this)
   }
 
-  removeTodo(todo) {
-    this.todos = this.todos.filter(t => t !== todo)
+  removeTodo(id) {
+    this.todos = this.todos.filter(t => t.id !== id)
     Storage.updateProject(this)
   }
 }

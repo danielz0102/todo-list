@@ -7,16 +7,33 @@
 .icon-btn {
   display: grid;
   place-content: center;
+  border: none;
+  background: none;
+  
+  cursor: pointer;
 
+  &:hover {
+    animation: shake 0.2s;
+  }
+}
+
+@keyframes shake {
+  0% { transform: rotate(0); }
+  25% { transform: rotate(-25deg); }
+  75% { transform: rotate(25deg); }
+  100% { transform: rotate(0); }
+}
+
+.icon-btn--floating {
   border: 1px solid #ccc;
   border-radius: 50%;
   padding: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s;
 
   position: fixed;
   bottom: 25px;
   right: 25px;
+
+  transition: background-color 0.2s;
 
   &:hover {
     background-color: #fff;

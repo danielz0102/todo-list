@@ -1,5 +1,6 @@
 import './project.css'
 import addIconSrc from '@/assets/icons/add.svg'
+import deleteIconSrc from '@/assets/icons/delete.svg'
 import { createTodoCard } from '@/components/todoCard/todoCard.js'
 import { createFallback } from '@/components/fallback/fallback.js'
 import { createIcon } from '@/components/icon/icon.js'
@@ -35,8 +36,14 @@ export function createProjectPage(project) {
   todos.id = 'todos'
 
   project.todos.forEach(todo => {
+    const row = document.createElement('div')
+    row.classList.add('row')
+    
+    const deleteBtn = createDeleteBtn(todo.id, project, wrapper)
     const Card = createTodoCard(todo)
-    todos.appendChild(Card)
+
+    row.append(Card, deleteBtn)
+    todos.appendChild(row)
   })
 
   wrapper.appendChild(todos)
@@ -48,7 +55,7 @@ function createAddTodoBtn(project, wrapper) {
   const addIcon = createIcon({ src: addIconSrc, alt: 'Plus icon' })
 
   const addTodoBtn = document.createElement('button')
-  addTodoBtn.classList.add('icon-btn')
+  addTodoBtn.classList.add('icon-btn', 'icon-btn--floating')
   addTodoBtn.appendChild(addIcon)
 
   addTodoBtn.addEventListener('click', () => {
@@ -63,4 +70,22 @@ function createAddTodoBtn(project, wrapper) {
   })
 
   return addTodoBtn
+}
+
+function createDeleteBtn(todoId, project, wrapper) {
+  const deleteIcon = createIcon({ src: deleteIconSrc, alt: 'Trash can icon' })
+  
+  const deleteBtn = document.createElement('button')
+  deleteBtn.classList.add('icon-btn')
+  deleteBtn.appendChild(deleteIcon)
+
+  deleteBtn.addEventListener('click', () => {
+    console.log('Removing todo...')
+    project.removeTodo(todoId)
+
+    const newPage = createProjectPage(project)
+    wrapper.replaceChildren(newPage)
+  })
+
+  return deleteBtn
 }
