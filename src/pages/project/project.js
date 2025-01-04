@@ -1,10 +1,9 @@
 import './project.css'
+import addIconSrc from '@/assets/icons/add.svg'
 import { createTodoCard } from '@/components/todoCard/todoCard.js'
 import { createFallback } from '@/components/fallback/fallback.js'
 import { createIcon } from '@/components/icon/icon.js'
 import { Todo } from '@/modules/Todo.js'
-import { Storage } from '@/modules/Storage.js'
-import addIconSrc from '@/assets/icons/add.svg'
 
 export function createProjectPage(project) {
   const wrapper = document.createElement('div')
@@ -52,7 +51,6 @@ function createAddTodoBtn(project, wrapper) {
       priority: 'High'
     }))
 
-    Storage.updateProject(project)
     wrapper.replaceChildren(createProjectPage(project))
   })
 
