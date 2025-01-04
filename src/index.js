@@ -3,9 +3,10 @@ import '@fontsource-variable/rubik'
 // Supports weights 200-900
 import '@fontsource-variable/nunito'
 import '@/index.css'
-import { UI } from '@/modules/UI.js'
 import { Storage } from '@/modules/Storage.js'
+import { Sidebar } from '@/components/sidebar/sidebar.js'
+import { Main } from '@/components/main/main.js'
 
-localStorage.clear()
 Storage.init()
-UI.init()
+
+document.querySelector('#app').append(Sidebar, Main)
