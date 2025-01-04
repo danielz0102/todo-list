@@ -47,8 +47,10 @@ export const Storage = (() => {
     saveProjects(projects)
   }
 
+  localStorage.clear()
+  init()
+
   return { 
-    init,
     getProjects,
     addProject,
     removeProject,
