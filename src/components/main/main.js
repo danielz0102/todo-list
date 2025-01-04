@@ -1,10 +1,21 @@
 import './main.css'
-import { createAllProjectsPage } from '@/pages/allProjects/allProjects.js'
 import { createProjectPage } from '@/pages/project/project.js'
 import { Storage } from '@/modules/Storage.js'
 
-const Main = document.createElement('main')
+export function createMain() {
+  const Main = document.createElement('main')
+  Main.replaceChildren(createProjectPage(Storage.getProjects()[0]))
 
-Main.replaceChildren(createProjectPage(Storage.getProjects()[0]))
+  document.addEventListener('renderMain', e => {
+    if (e.detail.projectId) {
+      const projects = Storage.getProjects()
+      const project = projects.find(project => project.id === e.detail.projectId)
+      Main.replaceChildren(createProjectPage(project))
+      return
+    }
 
-export { Main }
+    Main.replaceChildren(e.detail.createPage())
+  })
+
+  return Main
+}

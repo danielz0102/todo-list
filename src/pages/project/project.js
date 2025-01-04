@@ -2,7 +2,6 @@ import './project.css'
 import { createTodoCard } from '@/components/todoCard/todoCard.js'
 import { createFallback } from '@/components/fallback/fallback.js'
 import { createIcon } from '@/components/icon/icon.js'
-import { Main } from '@/components/main/main.js'
 import { Todo } from '@/modules/Todo.js'
 import { Storage } from '@/modules/Storage.js'
 import addIconSrc from '@/assets/icons/add.svg'
@@ -14,7 +13,7 @@ export function createProjectPage(project) {
   const title = document.createElement('h1')
   title.textContent = project.name
 
-  const addTodoBtn = createAddTodoBtn(project)
+  const addTodoBtn = createAddTodoBtn(project, wrapper)
 
   wrapper.append(title, addTodoBtn)
 
@@ -38,12 +37,13 @@ export function createProjectPage(project) {
   return wrapper
 }
 
-function createAddTodoBtn(project) {
+function createAddTodoBtn(project, wrapper) {
   const addIcon = createIcon({ src: addIconSrc, alt: 'Plus icon' })
 
   const addTodoBtn = document.createElement('button')
   addTodoBtn.classList.add('icon-btn')
   addTodoBtn.appendChild(addIcon)
+
   addTodoBtn.addEventListener('click', () => {
     project.addTodo(new Todo({
       title: 'New todo!',
@@ -53,7 +53,7 @@ function createAddTodoBtn(project) {
     }))
 
     Storage.updateProject(project)
-    Main.replaceChildren(createProjectPage(project))
+    wrapper.replaceChildren(createProjectPage(project))
   })
 
   return addTodoBtn

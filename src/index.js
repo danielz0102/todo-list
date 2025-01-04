@@ -4,9 +4,13 @@ import '@fontsource-variable/rubik'
 import '@fontsource-variable/nunito'
 import '@/index.css'
 import { Storage } from '@/modules/Storage.js'
-import { Sidebar } from '@/components/sidebar/sidebar.js'
-import { Main } from '@/components/main/main.js'
+import { createSidebar } from '@/components/sidebar/sidebar.js'
+import { createMain } from '@/components/main/main.js'
 
+localStorage.clear()
 Storage.init()
+
+const Main = createMain()
+const Sidebar = createSidebar()
 
 document.querySelector('#app').append(Sidebar, Main)

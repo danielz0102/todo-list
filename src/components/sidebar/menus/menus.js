@@ -1,44 +1,63 @@
 import { createItem } from '@/components/item/item.js'
 import { createMenu } from '@/components/menu/menu.js'
-import { Main } from '@/components/main/main.js'
 import { Storage } from '@/modules/Storage.js'
 import { Project } from '@/modules/Project.js'
-import { Today } from '@/pages/today/today.js'
-import { ThisWeek } from '@/pages/thisWeek/thisWeek.js'
+import { createTodayPage } from '@/pages/today/today.js'
+import { createThisWeekPage } from '@/pages/thisWeek/thisWeek.js'
 import { createAllProjectsPage } from '@/pages/allProjects/allProjects.js'
-import { createProjectPage } from '@/pages/project/project.js'
 import { sidebarIcons } from './icons.js'
 
-const MainMenu = (() => {
+function createMainMenu() {
   const mainItems = [
     createItem({
       text: 'Today',
       icon: sidebarIcons.today(),
-      clickHandler: () => Main.replaceChildren(Today)
+      clickHandler: () => {
+        document.dispatchEvent(new CustomEvent('renderMain', {
+          detail: {
+            createPage: createTodayPage,
+          }
+        }))
+      }
     }),
     createItem({
       text: 'This Week',
       icon: sidebarIcons.week(),
-      clickHandler: () => Main.replaceChildren(ThisWeek)
+      clickHandler: () => {
+        document.dispatchEvent(new CustomEvent('renderMain', {
+          detail: {
+            createPage: createThisWeekPage,
+          }
+        }))
+      }
     }),
     createItem({
       text: 'All Projects',
       icon: sidebarIcons.all(),
-      clickHandler: () => Main.replaceChildren(createAllProjectsPage())
+      clickHandler: () => {
+        document.dispatchEvent(new CustomEvent('renderMain', {
+          detail: {
+            createPage: createAllProjectsPage,
+          }
+        }))
+      }
     }),
   ]
 
   return createMenu({ items: mainItems, id: 'mainMenu' })
-})()
+}
 
-const ProjectsMenu = (() => {
+function createProjectsMenu() {
+  const Main = document.querySelector('main')
   const projects = Storage.getProjects()
+
   const props = {
     title: 'My Projects',
     items: [],
     fallback: '',
     id: 'projectsMenu',
   }
+
   const addProjectItem = createItem({
     text: 'Add Project',
     icon: sidebarIcons.add(),
@@ -65,7 +84,17 @@ const ProjectsMenu = (() => {
         createItem({
           text: project.name,
           icon: sidebarIcons.project(),
-          clickHandler: () => Main.replaceChildren(createProjectPage(project)),
+          clickHandler: () => {
+            document.dispatchEvent(new CustomEvent('renderMain', {
+              detail: {
+                /*The projects rendered in sidebar could not have the whole up-to-date info.
+                To be sure the project is up-to-date before render it, only its id is send 
+                in order to get it from Storage*/
+                projectId: project.id,
+              }
+            })
+            )
+          },
         })
       )
     } else {
@@ -79,6 +108,6 @@ const ProjectsMenu = (() => {
   menu.appendChild(addProjectItem)
 
   return menu
-})()
+}
 
-export { MainMenu, ProjectsMenu }
+export { createMainMenu, createProjectsMenu }
