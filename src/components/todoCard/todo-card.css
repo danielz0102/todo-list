@@ -7,6 +7,47 @@
   display: flex;
   flex-direction: column;
   gap: 4px;
+
+  cursor: pointer;
+}
+
+.todo-card--expanded {
+  width: 100%;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
+  gap: 8px;
+}
+
+.description {
+  color: var(--secondary-text);
+}
+
+.priority {
+  --label-color: var(--sidebar-background);
+  background-color: var(--label-color);
+  color: #fff;
+  font-weight: bold;
+  width: fit-content;
+  border-radius: 16px;
+  padding: 4px 8px;
+  font-size: small;
+
+  &:hover {
+    opacity: 0.75;
+  }
+}
+
+.priority--high {
+  --label-color: #ff0000;
+}
+
+.priority--medium {
+  --label-color: #e5ff00;
+}
+
+.priority--low {
+  --label-color: #22ff00;
 }
 
 input[type="checkbox"] {
@@ -25,7 +66,7 @@ input[type="checkbox"]::before {
   width: 0.5em;
   height: 0.5em;
   transform: scale(0);
-  box-shadow: inset 1em 1em #08d208;
+  box-shadow: inset 1em 1em #22ff00;
 
   /*Checkmark*/
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);

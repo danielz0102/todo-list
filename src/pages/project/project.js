@@ -49,7 +49,7 @@ function createAddTodoBtn(project) {
       title: 'New todo!',
       description: '',
       dueDate: 'Today',
-      priority: 'High'
+      priority: 'None'
     }))
 
     updateTodos(project)

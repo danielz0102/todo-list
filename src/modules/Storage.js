@@ -47,7 +47,6 @@ export const Storage = (() => {
     saveProjects(projects)
   }
 
-  localStorage.clear()
   init()
 
   return { 
