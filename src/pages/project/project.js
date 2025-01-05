@@ -22,42 +22,25 @@ export function createProjectPage(project) {
 
   title.textContent = project.name
 
-  const addTodoBtn = createAddTodoBtn(project, wrapper)
-  addTodoBtn.id = 'addTodoBtn'
+  const addTodoBtn = createAddTodoBtn(project)
   const deleteProjectBtn = createDeleteProjectBtn(project.id)
+  const todos = createTodos(project)
 
-  wrapper.append(title, addTodoBtn, deleteProjectBtn)
-
-  if (!project.todos.length) {
-    const fallback = createFallback('No todos yet')
-    wrapper.appendChild(fallback)
-
-    return wrapper
-  }
-
-  const todos = document.createElement('section')
-  todos.id = 'todos'
-
-  project.todos.forEach(todo => {
-    const row = document.createElement('div')
-    row.classList.add('row')
-    
-    const deleteBtn = createDeleteTodoBtn(todo.id, project, wrapper)
-    const Card = createTodoCard(todo)
-
-    row.append(Card, deleteBtn)
-    todos.appendChild(row)
-  })
-
-  wrapper.appendChild(todos)
+  wrapper.append(
+    title,
+    addTodoBtn,
+    deleteProjectBtn,
+    todos
+  )
 
   return wrapper
 }
 
-function createAddTodoBtn(project, wrapper) {
+function createAddTodoBtn(project) {
   const addIcon = createIcon({ src: addIconSrc, alt: 'Plus icon' })
 
   const addTodoBtn = document.createElement('button')
+  addTodoBtn.id = 'addTodoBtn'
   addTodoBtn.classList.add('icon-btn', 'icon-btn--rounded')
   addTodoBtn.appendChild(addIcon)
 
@@ -69,24 +52,22 @@ function createAddTodoBtn(project, wrapper) {
       priority: 'High'
     }))
 
-    wrapper.replaceChildren(createProjectPage(project))
+    updateTodos(project)
   })
 
   return addTodoBtn
 }
 
-function createDeleteTodoBtn(todoId, project, wrapper) {
+function createDeleteTodoBtn(todoId, project) {
   const deleteIcon = createIcon({ src: deleteIconSrc, alt: 'Trash can icon' })
-  
+
   const deleteBtn = document.createElement('button')
   deleteBtn.classList.add('icon-btn')
   deleteBtn.appendChild(deleteIcon)
 
   deleteBtn.addEventListener('click', () => {
     project.removeTodo(todoId)
-
-    const newPage = createProjectPage(project)
-    wrapper.replaceChildren(newPage)
+    updateTodos(project)
   })
 
   return deleteBtn
@@ -108,4 +89,34 @@ function createDeleteProjectBtn(projectId) {
   })
 
   return btn
+}
+
+function createTodos(project) {
+  const todos = document.createElement('section')
+  todos.id = 'todos'
+
+  if (!project.todos.length) {
+    const fallback = createFallback('No todos yet')
+    todos.appendChild(fallback)
+
+    return todos
+  }
+
+  project.todos.forEach(todo => {
+    const row = document.createElement('div')
+    row.classList.add('row')
+
+    const deleteBtn = createDeleteTodoBtn(todo.id, project)
+    const Card = createTodoCard(todo)
+
+    row.append(Card, deleteBtn)
+    todos.appendChild(row)
+  })
+
+  return todos
+}
+
+function updateTodos(project) {
+  const newContent = createTodos(project).children
+  document.querySelector('#todos').replaceChildren(...newContent)
 }
