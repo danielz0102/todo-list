@@ -5,6 +5,7 @@ import { createTodoCard } from '@/components/todoCard/todoCard.js'
 import { createFallback } from '@/components/fallback/fallback.js'
 import { createIcon } from '@/components/icon/icon.js'
 import { Todo } from '@/modules/Todo.js'
+import { Storage } from '@/modules/Storage.js'
 
 export function createProjectPage(project) {
   const wrapper = document.createElement('div')
@@ -22,8 +23,9 @@ export function createProjectPage(project) {
   title.textContent = project.name
 
   const addTodoBtn = createAddTodoBtn(project, wrapper)
+  const deleteProjectBtn = createDeleteProjectBtn(project.id)
 
-  wrapper.append(title, addTodoBtn)
+  wrapper.append(title, addTodoBtn, deleteProjectBtn)
 
   if (!project.todos.length) {
     const fallback = createFallback('No todos yet')
@@ -39,7 +41,7 @@ export function createProjectPage(project) {
     const row = document.createElement('div')
     row.classList.add('row')
     
-    const deleteBtn = createDeleteBtn(todo.id, project, wrapper)
+    const deleteBtn = createDeleteTodoBtn(todo.id, project, wrapper)
     const Card = createTodoCard(todo)
 
     row.append(Card, deleteBtn)
@@ -72,7 +74,7 @@ function createAddTodoBtn(project, wrapper) {
   return addTodoBtn
 }
 
-function createDeleteBtn(todoId, project, wrapper) {
+function createDeleteTodoBtn(todoId, project, wrapper) {
   const deleteIcon = createIcon({ src: deleteIconSrc, alt: 'Trash can icon' })
   
   const deleteBtn = document.createElement('button')
@@ -80,7 +82,6 @@ function createDeleteBtn(todoId, project, wrapper) {
   deleteBtn.appendChild(deleteIcon)
 
   deleteBtn.addEventListener('click', () => {
-    console.log('Removing todo...')
     project.removeTodo(todoId)
 
     const newPage = createProjectPage(project)
@@ -88,4 +89,22 @@ function createDeleteBtn(todoId, project, wrapper) {
   })
 
   return deleteBtn
+}
+
+function createDeleteProjectBtn(projectId) {
+  const btn = document.createElement('button')
+  btn.textContent = 'Delete project'
+  btn.id = 'deleteProjectBtn'
+
+  btn.addEventListener('click', () => {
+    console.log('Deleting project...')
+    Storage.removeProject(projectId)
+    document.dispatchEvent(new CustomEvent('projectDeleted'), {
+      detail: {
+        id: projectId
+      }
+    })
+  })
+
+  return btn
 }

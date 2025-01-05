@@ -86,6 +86,8 @@ function createProjectsMenu() {
   })
   menu.appendChild(addProjectItem)
 
+  document.addEventListener('projectDeleted', updateProjects)
+
   return menu
 }
 

@@ -30,8 +30,8 @@ export const Storage = (() => {
     saveProjects(projects)
   }
 
-  const removeProject = project => {
-    const projects = getProjects().filter(p => p.id !== project.id)
+  const removeProject = id => {
+    const projects = getProjects().filter(p => p.id !== id)
     saveProjects(projects)
   }
 
