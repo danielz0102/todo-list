@@ -17,6 +17,13 @@
   border-right: none;
   border-radius: 0;
   gap: 8px;
+
+  /*For card contraction to work well,
+  all the items inside the expanded card
+  must occupy the space of their content*/
+  & > * {
+    width: fit-content;
+  }
 }
 
 .description {
@@ -74,4 +81,8 @@ input[type="checkbox"]::before {
 
 input[type="checkbox"]:checked::before {
   transform: scale(1);
+}
+
+*[contenteditable] {
+  outline: none;
 }

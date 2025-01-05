@@ -107,7 +107,7 @@ function createTodos(project) {
     row.classList.add('row')
 
     const deleteBtn = createDeleteTodoBtn(todo.id, project)
-    const Card = createTodoCard(todo)
+    const Card = createTodoCard(todo, project.id)
 
     row.append(Card, deleteBtn)
     todos.appendChild(row)

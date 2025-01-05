@@ -13,6 +13,15 @@ class Todo {
     this.priority = priority
     this.complete = false
   }
+
+  updateProperty({
+    value,
+    property,
+    project
+  }) {
+    this[property] = value
+    project.updateTodo(this)
+  }
 }
 
 export { Priority, Todo }

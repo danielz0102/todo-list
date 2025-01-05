@@ -1,5 +1,5 @@
 import { Project } from './Project.js'
-
+import { Todo } from './Todo.js'
 export const Storage = (() => {
   const init = () => {
     if (localStorage.length === 0) {
@@ -18,7 +18,18 @@ export const Storage = (() => {
     return rawData.map(project => {
       const newProject = new Project(project.name)
       newProject.id = project.id
-      newProject.todos = project.todos ?? []
+
+      newProject.todos = project.todos?.map(todo => {
+        const newTodo = new Todo({
+          title: todo.title,
+          description: todo.description,
+          dueDate: todo.dueDate,
+          priority: todo.priority
+        })
+        newTodo.id = todo.id
+        newTodo.complete = todo.complete
+        return newTodo
+      }) ?? []
 
       return newProject
     })
@@ -47,12 +58,23 @@ export const Storage = (() => {
     saveProjects(projects)
   }
 
+  const getProject = id => {
+    const project = getProjects().find(project => project.id === id)
+
+    if (!project) {
+      throw new Error(`Project with id ${id} not found`)
+    }
+
+    return project
+  }
+
   init()
 
-  return { 
+  return {
     getProjects,
     addProject,
     removeProject,
-    updateProject
+    updateProject,
+    getProject,
   }
 })()

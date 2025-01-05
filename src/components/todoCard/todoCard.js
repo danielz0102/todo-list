@@ -1,5 +1,6 @@
 import './todo-card.css'
 import { Priority } from '@/modules/Todo.js'
+import { Storage } from '@/modules/Storage.js'
 
 const PRIORITY_STYLES = {
   [Priority.LOW]: 'priority--low',
@@ -14,12 +15,17 @@ function handleClick(e, todo) {
 
 function expandCard(card, todo) {
   card.classList.toggle('todo-card--expanded')
-  const row = card.querySelector('.row')
 
-  if (card.classList.contains('todo-card--expanded')) {
+  const row = card.querySelector('.row')
+  const isExpanded = card.classList.contains('todo-card--expanded')
+  const projectId = card.dataset.project
+
+  row.querySelector('.title').setAttribute('contenteditable', true)
+
+  if (isExpanded) {
     const priorityLabel = createPriorityLabel(todo.priority)
-    const todoInfo = createTodoInfo(todo)
-    
+    const todoInfo = createTodoInfo(todo, projectId)
+
     row.appendChild(priorityLabel)
     row.after(todoInfo)
   } else {
@@ -28,21 +34,32 @@ function expandCard(card, todo) {
   }
 }
 
-function createTodoInfo(todo) {
+function createTodoInfo(todo, projectId) {
   const info = document.createElement('div')
   info.classList.add('todo-info')
 
-  const description = createDescription(todo.description)
+  const description = createDescription(todo, projectId)
 
   info.appendChild(description)
 
   return info
 }
 
-function createDescription(text) {
+function createDescription(todo, projectId) {
   const description = document.createElement('p')
   description.classList.add('description')
-  description.textContent = text || 'Add a description...'
+  description.textContent = todo.description || 'Add a description...'
+  description.setAttribute('contenteditable', true)
+
+  description.addEventListener('blur', e => {
+    const project = Storage.getProject(projectId)
+
+    todo.updateProperty({
+      value: e.currentTarget.textContent,
+      property: 'description',
+      project
+    })
+  })
 
   return description
 }
@@ -60,9 +77,29 @@ function createPriorityLabel(priority) {
   return label
 }
 
-export function createTodoCard(todo) {
+function createTitle(todo, projectId) {
+  const title = document.createElement('p')
+  title.textContent = todo.title
+  title.classList.add('title')
+
+  title.addEventListener('blur', e => {
+    const project = Storage.getProject(projectId)
+
+    todo.updateProperty({
+      value: e.currentTarget.textContent,
+      property: 'title',
+      project
+    })
+  })
+
+  return title
+}
+
+export function createTodoCard(todo, projectId) {
   const Card = document.createElement('article')
   Card.classList.add('todo-card')
+  Card.id = todo.id
+  Card.dataset.project = projectId
 
   const row = document.createElement('div')
   row.classList.add('row')
@@ -71,9 +108,7 @@ export function createTodoCard(todo) {
   check.type = 'checkbox'
   check.checked = todo.complete
 
-  const title = document.createElement('p')
-  title.textContent = todo.title
-  title.classList.add('title')
+  const title = createTitle(todo, projectId)
 
   row.append(check, title)
 
@@ -82,7 +117,13 @@ export function createTodoCard(todo) {
   dueDate.classList.add('fallback')
 
   Card.addEventListener('click', e => {
-    if (e.target !== check) {
+    const isExpanded = Card.classList.contains('todo-card--expanded')
+
+    if (!isExpanded && e.target !== check) {
+      handleClick(e, todo)
+    }
+
+    if (isExpanded && e.target === e.currentTarget) {
       handleClick(e, todo)
     }
   })
