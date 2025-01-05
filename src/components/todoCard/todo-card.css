@@ -26,6 +26,14 @@
   }
 }
 
+.todo-card--completed {
+  background-color: var(--sidebar-background);
+  
+  & .title {
+    text-decoration: line-through;
+  }
+}
+
 .description {
   color: var(--secondary-text);
 }

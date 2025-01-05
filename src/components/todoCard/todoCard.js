@@ -95,19 +95,46 @@ function createTitle(todo, projectId) {
   return title
 }
 
+function createCheckbox({todo, projectId, card}) {
+  const check = document.createElement('input')
+  check.type = 'checkbox'
+  check.checked = todo.complete
+
+  check.addEventListener('input', e => {
+    const project = Storage.getProject(projectId)
+    const isChecked = e.currentTarget.checked
+
+    todo.updateProperty({
+      value: isChecked,
+      property: 'complete',
+      project
+    })
+
+    card.classList.toggle('todo-card--completed')
+  })
+
+  return check
+}
+
 export function createTodoCard(todo, projectId) {
   const Card = document.createElement('article')
   Card.classList.add('todo-card')
+
+  if (todo.complete) {
+    Card.classList.add('todo-card--completed')
+  }
+
   Card.id = todo.id
   Card.dataset.project = projectId
 
   const row = document.createElement('div')
   row.classList.add('row')
 
-  const check = document.createElement('input')
-  check.type = 'checkbox'
-  check.checked = todo.complete
-
+  const check = createCheckbox({
+    todo,
+    projectId,
+    card: Card
+  })
   const title = createTitle(todo, projectId)
 
   row.append(check, title)
