@@ -54,7 +54,11 @@ function createProjectsMenu() {
     const projects = Storage.getProjects()
     setItems(projects)
 
-    document.querySelector('#projectsMenu').replaceChildren(...params.items)
+    const newMenu = createMenu({
+      items: params.items,
+      fallback: params.fallback,
+    })
+    document.querySelector('#projectsMenu').replaceChildren(...newMenu.children)
 
     if (document.querySelector('#allProjects')) {
       dispatchRenderEvent({ page: createAllProjectsPage })
