@@ -1,6 +1,6 @@
 #sidebar {
   flex: 0 1 350px;
-  background-color: var(--sidebar-background);
+  background-color: var(--secondary-background);
   padding: 16px;
 
   display: flex;

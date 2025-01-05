@@ -25,10 +25,10 @@
 }
 
 .icon-btn--rounded {
-  border: 1px solid var(--sidebar-background);
+  border: 1px solid var(--secondary-background);
   border-radius: 50%;
   padding: 8px;
-  background-color: var(--sidebar-background);
+  background-color: var(--secondary-background);
 
   transition: background-color 0.2s;
 
