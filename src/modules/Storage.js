@@ -12,27 +12,33 @@ export const Storage = (() => {
     localStorage.setItem('projects', JSON.stringify(projects))
   }
 
+  const deserializeProject = project => {
+    const newProject = new Project(project.name)
+    newProject.id = project.id
+    newProject.todos = project.todos?.map(
+      todo => deserializeTodo(todo)
+    ) ?? []
+
+    return newProject
+  }
+
+  const deserializeTodo = todo => {
+    const newTodo = new Todo({
+      title: todo.title,
+      description: todo.description,
+      dueDate: todo.dueDate,
+      priority: todo.priority
+    })
+    newTodo.id = todo.id
+    newTodo.complete = todo.complete
+    
+    return newTodo
+  }
+
   const getProjects = () => {
     const rawData = JSON.parse(localStorage.getItem('projects')) ?? []
 
-    return rawData.map(project => {
-      const newProject = new Project(project.name)
-      newProject.id = project.id
-
-      newProject.todos = project.todos?.map(todo => {
-        const newTodo = new Todo({
-          title: todo.title,
-          description: todo.description,
-          dueDate: todo.dueDate,
-          priority: todo.priority
-        })
-        newTodo.id = todo.id
-        newTodo.complete = todo.complete
-        return newTodo
-      }) ?? []
-
-      return newProject
-    })
+    return rawData.map(project => deserializeProject(project))
   }
 
   const addProject = project => {
