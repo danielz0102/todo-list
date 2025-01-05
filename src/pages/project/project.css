@@ -24,20 +24,23 @@
   100% { transform: rotate(0); }
 }
 
-.icon-btn--floating {
-  border: 1px solid #ccc;
+.icon-btn--rounded {
+  border: 1px solid var(--sidebar-background);
   border-radius: 50%;
   padding: 8px;
-
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
+  background-color: var(--sidebar-background);
 
   transition: background-color 0.2s;
 
   &:hover {
-    background-color: #fff;
+    background-color: var(--main-background);
   }
+}
+
+#addTodoBtn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
 }
 
 #deleteProjectBtn {

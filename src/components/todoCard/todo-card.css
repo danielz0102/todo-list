@@ -1,5 +1,5 @@
 .todo-card {
-  border: 1px solid #ccc;
+  border: 1px solid var(--sidebar-background);
   border-radius: 16px;
   padding: 8px;
   width: 200px;

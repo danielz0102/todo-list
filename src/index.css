@@ -1,5 +1,7 @@
 :root {
   --secondary-text: #474747;
+  --sidebar-background: #ccc;
+  --main-background: #fff;
 }
 
 *,

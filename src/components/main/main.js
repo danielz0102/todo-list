@@ -5,7 +5,8 @@ import { Storage } from '@/modules/Storage.js'
 
 export function createMain() {
   const Main = document.createElement('main')
-  Main.replaceChildren(createProjectPage(Storage.getProjects()[0]))
+  const initialPage = createProjectPage(Storage.getProjects()[0])
+  Main.replaceChildren(initialPage)
 
   handleEvents(Main)
 

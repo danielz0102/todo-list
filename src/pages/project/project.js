@@ -23,6 +23,7 @@ export function createProjectPage(project) {
   title.textContent = project.name
 
   const addTodoBtn = createAddTodoBtn(project, wrapper)
+  addTodoBtn.id = 'addTodoBtn'
   const deleteProjectBtn = createDeleteProjectBtn(project.id)
 
   wrapper.append(title, addTodoBtn, deleteProjectBtn)
@@ -57,7 +58,7 @@ function createAddTodoBtn(project, wrapper) {
   const addIcon = createIcon({ src: addIconSrc, alt: 'Plus icon' })
 
   const addTodoBtn = document.createElement('button')
-  addTodoBtn.classList.add('icon-btn', 'icon-btn--floating')
+  addTodoBtn.classList.add('icon-btn', 'icon-btn--rounded')
   addTodoBtn.appendChild(addIcon)
 
   addTodoBtn.addEventListener('click', () => {

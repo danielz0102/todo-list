@@ -1,4 +1,6 @@
 main {
+  background-color: var(--main-background);
+  
   flex: 1;
   padding: 32px;
   overflow-y: auto;

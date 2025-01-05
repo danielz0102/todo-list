@@ -1,6 +1,6 @@
 #sidebar {
   flex: 0 1 350px;
-  background-color: #ccc;
+  background-color: var(--sidebar-background);
   padding: 16px;
 
   display: flex;
