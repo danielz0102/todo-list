@@ -19,16 +19,18 @@ function expandCard(card, todo) {
   const row = card.querySelector('.row')
   const isExpanded = card.classList.contains('todo-card--expanded')
   const projectId = card.dataset.project
+  const title = row.querySelector('.title')
 
-  row.querySelector('.title').setAttribute('contenteditable', true)
-
+  
   if (isExpanded) {
     const priorityLabel = createPriorityLabel(todo.priority)
     const todoInfo = createTodoInfo(todo, projectId)
-
+    
+    title.setAttribute('contenteditable', true)
     row.appendChild(priorityLabel)
     row.after(todoInfo)
   } else {
+    title.removeAttribute('contenteditable')
     card.querySelector('.todo-info').remove()
     row.querySelector('.priority').remove()
   }

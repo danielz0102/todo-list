@@ -73,6 +73,8 @@
 }
 
 input[type="checkbox"] {
+  flex-shrink: 0;
+
   appearance: none;
   width: 1em;
   height: 1em;
