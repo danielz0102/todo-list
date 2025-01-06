@@ -23,7 +23,6 @@ function expandCard(card, todo) {
   const projectId = card.dataset.project
   const title = row.querySelector('.title')
 
-  
   if (isExpanded) {
     const priorityLabel = createPriorityLabel(todo.priority)
     const todoInfo = createTodoInfo(todo, projectId)
@@ -58,7 +57,7 @@ function createDescription(todo, projectId) {
   description.addEventListener('blur', e => {
     const project = Storage.getProject(projectId)
     e.currentTarget.textContent ||= DEFAULT_DESCRIPTION
-    
+
     todo.updateProperty({
       value: e.currentTarget.textContent,
       property: 'description',

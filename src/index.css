@@ -53,7 +53,8 @@ hr {
 }
 
 [contenteditable] {
-  --secondary-background: #eae9e982;
+  --secondary-background: #fff;
+  
   outline: none;
   cursor: text;
   transition: background-color 0.2s;
