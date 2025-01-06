@@ -9,6 +9,13 @@
   gap: 4px;
 
   cursor: pointer;
+
+  transition:
+    width 1s,
+    gap 1s,
+    border-width 0.2s,
+    border-radius 0.2s
+  ;
 }
 
 .todo-card--expanded {
