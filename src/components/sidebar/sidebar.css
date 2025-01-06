@@ -1,5 +1,6 @@
 #sidebar {
   max-width: 350px;
+  flex: 1 0 350px;
   background-color: var(--secondary-background);
   padding: 16px;
 
