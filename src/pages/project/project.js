@@ -11,16 +11,12 @@ export function createProjectPage(project) {
   const wrapper = document.createElement('div')
   wrapper.id = 'project'
 
-  const title = document.createElement('h1')
+  const title = createTitle(project)
 
   if (!project) {
-    title.textContent = 'No project found'
     wrapper.appendChild(title)
-
     return wrapper
   }
-
-  title.textContent = project.name
 
   const addTodoBtn = createAddTodoBtn(project)
   const deleteProjectBtn = createDeleteProjectBtn(project.id)
@@ -34,6 +30,28 @@ export function createProjectPage(project) {
   )
 
   return wrapper
+}
+
+function createTitle(project) {
+  const title = document.createElement('h1')
+
+  if (!project) {
+    title.textContent = 'No project found'
+    return title
+  }
+
+  title.textContent = project.name
+  title.setAttribute('contenteditable', true)
+
+  title.addEventListener('blur', e => {
+    const txt = e.currentTarget.textContent
+    project.name = txt
+
+    Storage.updateProject(project)
+    document.dispatchEvent(new CustomEvent('projectTitleUpdated'))
+  })
+
+  return title
 }
 
 function createAddTodoBtn(project) {

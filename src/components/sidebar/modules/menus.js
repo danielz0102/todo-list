@@ -91,6 +91,7 @@ function createProjectsMenu() {
   menu.appendChild(addProjectItem)
 
   document.addEventListener('projectDeleted', updateProjects)
+  document.addEventListener('projectTitleUpdated', updateProjects)
 
   return menu
 }
