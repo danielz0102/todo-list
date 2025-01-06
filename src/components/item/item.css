@@ -13,4 +13,10 @@
   &:hover {
     background-color: var(--hover-color);
   }
+
+  & span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

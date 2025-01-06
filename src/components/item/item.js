@@ -10,7 +10,11 @@ export function createItem({
   const item = document.createElement('button')
   item.classList.add('item')
   item.style.setProperty('--hover-color', hoverColor)
-  item.append(icon, text)
+
+  const span = document.createElement('span')
+  span.textContent = text
+  
+  item.append(icon, span)
 
   if (clickHandler) {
     item.addEventListener('click', () => clickHandler(params))
