@@ -44,8 +44,9 @@ function createTitle(project) {
   title.setAttribute('contenteditable', true)
 
   title.addEventListener('blur', e => {
-    const txt = e.currentTarget.textContent
-    project.name = txt
+    const DEFAULT_TITLE = 'My Project'
+    e.currentTarget.textContent ||= DEFAULT_TITLE
+    project.name = e.currentTarget.textContent
 
     Storage.updateProject(project)
     document.dispatchEvent(new CustomEvent('projectTitleUpdated'))

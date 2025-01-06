@@ -7,6 +7,8 @@ const PRIORITY_STYLES = {
   [Priority.MEDIUM]: 'priority--medium',
   [Priority.HIGH]: 'priority--high',
 }
+const DEFAULT_DESCRIPTION = '...'
+const DEFAULT_TITLE = 'My Todo'
 
 function handleClick(e, todo) {
   const card = e.currentTarget
@@ -55,7 +57,8 @@ function createDescription(todo, projectId) {
 
   description.addEventListener('blur', e => {
     const project = Storage.getProject(projectId)
-
+    e.currentTarget.textContent ||= DEFAULT_DESCRIPTION
+    
     todo.updateProperty({
       value: e.currentTarget.textContent,
       property: 'description',
@@ -86,6 +89,7 @@ function createTitle(todo, projectId) {
 
   title.addEventListener('blur', e => {
     const project = Storage.getProject(projectId)
+    e.currentTarget.textContent ||= DEFAULT_TITLE
 
     todo.updateProperty({
       value: e.currentTarget.textContent,
