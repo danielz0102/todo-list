@@ -1,0 +1,28 @@
+.priority {
+  --label-color: var(--secondary-background);
+  background-color: var(--label-color);
+  color: #fff;
+  font-weight: bold;
+  width: fit-content;
+  border-radius: 16px;
+  padding: 4px 8px;
+  font-size: small;
+
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.75;
+  }
+}
+
+.priority--high {
+  --label-color: #ff0000;
+}
+
+.priority--medium {
+  --label-color: #e5ff00;
+}
+
+.priority--low {
+  --label-color: #22ff00;
+}

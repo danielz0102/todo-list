@@ -1,14 +1,9 @@
 import './todo-card.css'
-import { Priority } from '@/modules/Todo.js'
 import { Storage } from '@/modules/Storage.js'
 import { createCheckbox } from './components/checkbox/checkbox.js'
 import { createDescription } from './components/description/description.js'
+import { createPriorityLabel } from './components/priorityLabel/priorityLabel.js'
 
-const PRIORITY_STYLES = {
-  [Priority.LOW]: 'priority--low',
-  [Priority.MEDIUM]: 'priority--medium',
-  [Priority.HIGH]: 'priority--high',
-}
 const DEFAULT_TITLE = 'Todo'
 
 function handleClick(e, todo) {
@@ -94,19 +89,6 @@ function createTodoInfo(todo, projectId) {
   info.appendChild(description)
 
   return info
-}
-
-function createPriorityLabel(priority) {
-  const label = document.createElement('div')
-  label.classList.add('priority')
-  label.textContent = priority
-
-  const priorityFormatted = priority.toLowerCase()
-  const style = PRIORITY_STYLES[priorityFormatted]
-
-  label.classList.add(style)
-
-  return label
 }
 
 function createTitle(todo, projectId) {
