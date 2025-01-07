@@ -1,6 +1,7 @@
 import './sidebar.css'
 import { createProjectsMenu } from './components/projectsMenu/projectsMenu.js'
-import { createMainMenu } from './components/mainMenu/mainMenu.js'
+import { createMenu } from '@/components/menu/menu.js'
+import { mainItems } from './modules/mainItems.js'
 
 export function createSidebar() {
   const Sidebar = document.createElement('aside')
@@ -10,8 +11,7 @@ export function createSidebar() {
   title.textContent = 'Welcome'
 
   const divider = document.createElement('hr')
-  
-  const MainMenu = createMainMenu()
+  const MainMenu = createMenu({ items: mainItems, id: 'mainMenu' })
   const ProjectsMenu = createProjectsMenu()
   
   Sidebar.append(
