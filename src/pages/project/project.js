@@ -1,7 +1,7 @@
 import './project.css'
 import addIconSrc from '@/assets/icons/add.svg'
 import deleteIconSrc from '@/assets/icons/delete.svg'
-import { createTodoCard } from '@/components/todoCard/todoCard.js'
+import { createTodoCard } from './components/todoCard/todoCard.js'
 import { createFallback } from '@/components/fallback/fallback.js'
 import { createIcon } from '@/components/icon/icon.js'
 import { Todo } from '@/modules/Todo.js'
