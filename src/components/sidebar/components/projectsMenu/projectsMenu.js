@@ -1,3 +1,4 @@
+import './projectsMenu.css'
 import { createItem } from '@/components/sidebar/components/item/item.js'
 import { createMenu } from '@/components/menu/menu.js'
 import { Storage } from '@/modules/Storage.js'
@@ -6,42 +7,17 @@ import { createAllProjectsPage } from '@/pages/allProjects/allProjects.js'
 import { sidebarIcons } from '@/components/sidebar/modules/sidebarIcons.js'
 import { dispatchRenderEvent } from '@/components/sidebar/modules/dispatchEvent.js'
 
+const params = {
+  title: 'My Projects',
+  items: [],
+  fallback: 'No projects yet',
+  id: 'projectsMenu',
+}
+
 export function createProjectsMenu() {
-  const params = {
-    title: 'My Projects',
-    items: [],
-    fallback: 'No projects yet',
-    id: 'projectsMenu',
-  }
-
-  const updateProjects = () => {
-    const projects = Storage.getProjects()
-    setItems(projects)
-
-    const newMenu = createMenu({
-      items: params.items,
-      fallback: params.fallback,
-    })
-    document.querySelector('#projectsMenu').replaceChildren(...newMenu.children)
-
-    if (document.querySelector('#allProjects')) {
-      dispatchRenderEvent({ page: createAllProjectsPage })
-    }
-  }
-
-  const setItems = projects => {
-    params.items = projects.map(project =>
-      createItem({
-        text: project.name,
-        icon: sidebarIcons.project(),
-        clickHandler: () => dispatchRenderEvent({ projectId: project.id}),
-      })
-    )
-  }
-
   const projects = Storage.getProjects()
   setItems(projects)
-  
+
   const menu = createMenu(params)
 
   const addProjectItem = createItem({
@@ -58,4 +34,29 @@ export function createProjectsMenu() {
   document.addEventListener('projectTitleUpdated', updateProjects)
 
   return menu
+}
+
+function updateProjects() {
+  const projects = Storage.getProjects()
+  setItems(projects)
+
+  const newMenu = createMenu({
+    items: params.items,
+    fallback: params.fallback,
+  })
+  document.querySelector('#projectsMenu').replaceChildren(...newMenu.children)
+
+  if (document.querySelector('#allProjects')) {
+    dispatchRenderEvent({ page: createAllProjectsPage })
+  }
+}
+
+function setItems(projects) {
+  params.items = projects.map(project =>
+    createItem({
+      text: project.name,
+      icon: sidebarIcons.project(),
+      clickHandler: () => dispatchRenderEvent({ projectId: project.id }),
+    })
+  )
 }

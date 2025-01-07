@@ -1,4 +1,3 @@
-import './mainMenu.css'
 import { createMenu } from '@/components/menu/menu.js'
 import { createItem } from '@/components/sidebar/components/item/item.js'
 import { sidebarIcons } from '@/components/sidebar/modules/sidebarIcons.js'

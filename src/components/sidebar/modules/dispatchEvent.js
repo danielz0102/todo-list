@@ -3,10 +3,14 @@ export function dispatchRenderEvent({ page = null, projectId = null }) {
     throw new Error('You must provide either a page or a projectId')
   }
 
-  document.dispatchEvent(new CustomEvent('renderMain', {
+  const detailParam = {
     detail: {
       createPage: page,
       projectId,
     }
-  }))
+  }
+
+  const renderMainEvent = new CustomEvent('renderMain', detailParam)
+
+  document.dispatchEvent(renderMainEvent)
 }
