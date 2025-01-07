@@ -52,13 +52,6 @@
   width: 100%;
 }
 
-.description {
-  color: var(--secondary-text);
-  white-space: pre-wrap;
-  display: block;
-  width: 100%;
-}
-
 .priority {
   --label-color: var(--secondary-background);
   background-color: var(--label-color);
