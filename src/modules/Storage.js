@@ -1,5 +1,6 @@
 import { Project } from './Project.js'
 import { Todo } from './Todo.js'
+
 export const Storage = (() => {
   const init = () => {
     if (localStorage.length === 0) {

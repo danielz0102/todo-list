@@ -1,0 +1,38 @@
+input[type="checkbox"] {
+  --main-background: #fff;
+  
+  flex-shrink: 0;
+
+  appearance: none;
+  width: 1em;
+  height: 1em;
+  border: 1px solid var(--secondary-text);
+  border-radius: 50%;
+  
+  display: grid;
+  place-content: center;
+  
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover, &:checked {
+    background-color: var(--main-background);
+  }
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.5em;
+  height: 0.5em;
+  transform: scale(0);
+  box-shadow: inset 1em 1em #22ff00;
+
+  transition: transform 0.2s;
+
+  /*Checkmark*/
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
