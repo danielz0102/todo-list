@@ -1,0 +1,5 @@
+#projectsMenu {
+  height: 450px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}

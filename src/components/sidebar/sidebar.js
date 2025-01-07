@@ -1,5 +1,6 @@
 import './sidebar.css'
-import { createMainMenu, createProjectsMenu } from './components/menus/menus.js'
+import { createProjectsMenu } from './components/projectsMenu/projectsMenu.js'
+import { createMainMenu } from './components/mainMenu/mainMenu.js'
 
 export function createSidebar() {
   const Sidebar = document.createElement('aside')

@@ -2,47 +2,11 @@ import { createItem } from '@/components/sidebar/components/item/item.js'
 import { createMenu } from '@/components/menu/menu.js'
 import { Storage } from '@/modules/Storage.js'
 import { Project } from '@/modules/Project.js'
-import { createTodayPage } from '@/pages/today/today.js'
-import { createThisWeekPage } from '@/pages/thisWeek/thisWeek.js'
 import { createAllProjectsPage } from '@/pages/allProjects/allProjects.js'
 import { sidebarIcons } from '@/components/sidebar/modules/sidebarIcons.js'
+import { dispatchRenderEvent } from '@/components/sidebar/modules/dispatchEvent.js'
 
-function dispatchRenderEvent({ page = null, projectId = null }) {
-  if (!page && !projectId) {
-    throw new Error('You must provide either a page or a projectId')
-  }
-
-  document.dispatchEvent(new CustomEvent('renderMain', {
-    detail: {
-      createPage: page,
-      projectId,
-    }
-  }))
-}
-
-function createMainMenu() {
-  const mainItems = [
-    createItem({
-      text: 'Today',
-      icon: sidebarIcons.today(),
-      clickHandler: () => dispatchRenderEvent({ page: createTodayPage })
-    }),
-    createItem({
-      text: 'This Week',
-      icon: sidebarIcons.week(),
-      clickHandler: () => dispatchRenderEvent({ page: createThisWeekPage })
-    }),
-    createItem({
-      text: 'All Projects',
-      icon: sidebarIcons.all(),
-      clickHandler: () => dispatchRenderEvent({ page: createAllProjectsPage })
-    }),
-  ]
-
-  return createMenu({ items: mainItems, id: 'mainMenu' })
-}
-
-function createProjectsMenu() {
+export function createProjectsMenu() {
   const params = {
     title: 'My Projects',
     items: [],
@@ -95,5 +59,3 @@ function createProjectsMenu() {
 
   return menu
 }
-
-export { createMainMenu, createProjectsMenu }
