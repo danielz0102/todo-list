@@ -7,8 +7,8 @@ const PRIORITY_STYLES = {
   [Priority.MEDIUM]: 'priority--medium',
   [Priority.HIGH]: 'priority--high',
 }
-const DEFAULT_DESCRIPTION = '...'
-const DEFAULT_TITLE = 'My Todo'
+const DEFAULT_DESCRIPTION = 'Add a description...'
+const DEFAULT_TITLE = 'Todo'
 
 function handleClick(e, todo) {
   const card = e.currentTarget
@@ -49,10 +49,17 @@ function createTodoInfo(todo, projectId) {
 }
 
 function createDescription(todo, projectId) {
-  const description = document.createElement('p')
+  const description = document.createElement('span')
   description.classList.add('description')
-  description.textContent = todo.description || 'Add a description...'
+  description.textContent = todo.description || DEFAULT_DESCRIPTION
   description.setAttribute('contenteditable', true)
+
+  description.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && !e.shiftKey || e.key === 'Escape') {
+      e.preventDefault()
+      e.currentTarget.blur()
+    }
+  })
 
   description.addEventListener('blur', e => {
     const project = Storage.getProject(projectId)
@@ -85,6 +92,13 @@ function createTitle(todo, projectId) {
   const title = document.createElement('p')
   title.textContent = todo.title
   title.classList.add('title')
+
+  title.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === 'Escape') {
+      e.preventDefault()
+      title.blur()
+    }
+  })
 
   title.addEventListener('blur', e => {
     const project = Storage.getProject(projectId)

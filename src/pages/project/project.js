@@ -43,8 +43,15 @@ function createTitle(project) {
   title.textContent = project.name
   title.setAttribute('contenteditable', true)
 
+  title.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === 'Escape') {
+      e.preventDefault()
+      title.blur()
+    }
+  })
+
   title.addEventListener('blur', e => {
-    const DEFAULT_TITLE = 'My Project'
+    const DEFAULT_TITLE = 'Title'
     e.currentTarget.textContent ||= DEFAULT_TITLE
     project.name = e.currentTarget.textContent
 
@@ -98,7 +105,6 @@ function createDeleteProjectBtn(projectId) {
   btn.id = 'deleteProjectBtn'
 
   btn.addEventListener('click', () => {
-    console.log('Deleting project...')
     Storage.removeProject(projectId)
     document.dispatchEvent(new CustomEvent('projectDeleted'), {
       detail: {

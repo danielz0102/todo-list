@@ -53,13 +53,6 @@ hr {
 }
 
 [contenteditable] {
-  --secondary-background: #fff;
-  
   outline: none;
   cursor: text;
-  transition: background-color 0.2s;
-
-  &:hover {
-    background-color: var(--secondary-background);
-  }
 }
