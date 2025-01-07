@@ -89,6 +89,8 @@
 }
 
 input[type="checkbox"] {
+  --main-background: #fff;
+  
   flex-shrink: 0;
 
   appearance: none;
@@ -96,10 +98,16 @@ input[type="checkbox"] {
   height: 1em;
   border: 1px solid var(--secondary-text);
   border-radius: 50%;
-  cursor: pointer;
-
+  
   display: grid;
   place-content: center;
+  
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover, &:checked {
+    background-color: var(--main-background);
+  }
 }
 
 input[type="checkbox"]::before {
