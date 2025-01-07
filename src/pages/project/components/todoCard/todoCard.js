@@ -3,11 +3,6 @@ import { createCheckbox } from './components/checkbox/checkbox.js'
 import { createDescription, createTitle } from './components/editableText/editableText.js'
 import { createPriorityLabel } from './components/priorityLabel/priorityLabel.js'
 
-function handleClick(e, todo) {
-  const card = e.currentTarget
-  expandCard(card, todo)
-}
-
 export function createTodoCard(todo, projectId) {
   const Card = document.createElement('article')
   Card.classList.add('todo-card')
@@ -22,68 +17,58 @@ export function createTodoCard(todo, projectId) {
   const row = document.createElement('div')
   row.classList.add('row')
 
-  const check = createCheckbox({
+  const checkbox = createCheckbox({
     todo,
     projectId,
     card: Card
   })
   const title = createTitle(todo, projectId)
+  const priorityLabel = createPriorityLabel('High')
 
-  row.append(check, title)
+  row.append(checkbox, title, priorityLabel)
 
   const dueDate = document.createElement('p')
   dueDate.textContent = todo.dueDate
   dueDate.classList.add('fallback')
 
-  Card.addEventListener('click', e => {
-    const isExpanded = Card.classList.contains('todo-card--expanded')
-
-    if (!isExpanded && e.target !== check) {
-      handleClick(e, todo)
-    }
-
-    if (isExpanded && e.target === e.currentTarget) {
-      handleClick(e, todo)
-    }
-  })
+  const description = createDescription(todo, projectId)
 
   Card.append(
     row,
+    description,
     dueDate,
   )
+
+  Card.addEventListener('click', event => handleClick(event, checkbox))
 
   return Card
 }
 
-function expandCard(card, todo) {
-  card.classList.toggle('todo-card--expanded')
+function handleClick(event, checkbox) {
+  const Card = event.currentTarget
 
-  const row = card.querySelector('.row')
-  const isExpanded = card.classList.contains('todo-card--expanded')
-  const projectId = card.dataset.project
-  const title = row.querySelector('.title')
+  let isExpanded = Card.classList.contains('todo-card--expanded')
+  const shouldExpand = !isExpanded && event.target !== checkbox
+  const shouldCollapse = isExpanded && event.target === Card
 
-  if (isExpanded) {
-    const priorityLabel = createPriorityLabel(todo.priority)
-    const todoInfo = createTodoInfo(todo, projectId)
-    
-    title.setAttribute('contenteditable', true)
-    row.appendChild(priorityLabel)
-    row.after(todoInfo)
-  } else {
-    title.removeAttribute('contenteditable')
-    card.querySelector('.todo-info').remove()
-    row.querySelector('.priority').remove()
+  if (shouldExpand || shouldCollapse) {
+    Card.classList.toggle('todo-card--expanded')
+    isExpanded = Card.classList.contains('todo-card--expanded')
+    handleExpansion(Card, isExpanded)
   }
 }
 
-function createTodoInfo(todo, projectId) {
-  const info = document.createElement('div')
-  info.classList.add('todo-info')
+function handleExpansion(Card, isExpanded) {
+  const title = Card.querySelector('.title')
+  const label = Card.querySelector('.priority')
+  const description = Card.querySelector('.description')
 
-  const description = createDescription(todo, projectId)
-
-  info.appendChild(description)
-
-  return info
+  label.style.display = isExpanded ? 'inline' : 'none'
+  description.style.display = isExpanded ? 'block' : 'none'
+  
+  if (isExpanded) {
+    title.setAttribute('contenteditable', true)
+  } else {
+    title.removeAttribute('contenteditable')
+  }
 }

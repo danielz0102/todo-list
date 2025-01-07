@@ -34,7 +34,8 @@
 
   /*For card contraction to work well,
   all the items inside the expanded card
-  must occupy the space of their content*/
+  don't have to occupy more space than 
+  their content*/
   & > * {
     width: fit-content;
   }
@@ -46,8 +47,4 @@
   & .title {
     text-decoration: line-through;
   }
-}
-
-.todo-info {
-  width: 100%;
 }

@@ -1,10 +1,10 @@
-import './editable-text.css'
+import './description.css'
 import { Storage } from '@/modules/Storage.js'
 
 const DEFAULT_DESCRIPTION = 'Add a description...'
 const DEFAULT_TITLE = 'Todo'
 
-function createDescription(todo, projectId) {
+export function createDescription(todo, projectId) {
   const description = document.createElement('span')
   description.textContent = todo.description || DEFAULT_DESCRIPTION
   description.classList.add('description')
@@ -24,14 +24,14 @@ function createDescription(todo, projectId) {
   return description
 }
 
-function createTitle(todo, projectId) {
+export function createTitle(todo, projectId) {
   const title = document.createElement('p')
   title.textContent = todo.title || DEFAULT_TITLE
   title.classList.add('title')
 
   title.addEventListener('keydown', event => handleKeyboard(event, false))
   title.addEventListener('blur',
-    event => handleEdition({ 
+    event => handleEdition({
       event,
       todo,
       projectId,
@@ -72,5 +72,3 @@ function handleEdition({
     project
   }) 
 }
-
-export { createDescription, createTitle }
