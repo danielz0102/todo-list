@@ -1,10 +1,7 @@
 import './todo-card.css'
-import { Storage } from '@/modules/Storage.js'
 import { createCheckbox } from './components/checkbox/checkbox.js'
-import { createDescription } from './components/description/description.js'
+import { createDescription, createTitle } from './components/editableText/editableText.js'
 import { createPriorityLabel } from './components/priorityLabel/priorityLabel.js'
-
-const DEFAULT_TITLE = 'Todo'
 
 function handleClick(e, todo) {
   const card = e.currentTarget
@@ -89,30 +86,4 @@ function createTodoInfo(todo, projectId) {
   info.appendChild(description)
 
   return info
-}
-
-function createTitle(todo, projectId) {
-  const title = document.createElement('p')
-  title.textContent = todo.title
-  title.classList.add('title')
-
-  title.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === 'Escape') {
-      e.preventDefault()
-      title.blur()
-    }
-  })
-
-  title.addEventListener('blur', e => {
-    const project = Storage.getProject(projectId)
-    e.currentTarget.textContent ||= DEFAULT_TITLE
-
-    todo.updateProperty({
-      value: e.currentTarget.textContent,
-      property: 'title',
-      project
-    })
-  })
-
-  return title
 }
