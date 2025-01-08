@@ -46,29 +46,18 @@ export function createTodoCard(todo, projectId) {
 
 function handleClick(event, checkbox) {
   const Card = event.currentTarget
-
-  let isExpanded = Card.classList.contains('todo-card--expanded')
+  const isExpanded = Card.classList.contains('todo-card--expanded')
   const shouldExpand = !isExpanded && event.target !== checkbox
   const shouldCollapse = isExpanded && event.target === Card
 
   if (shouldExpand || shouldCollapse) {
+    const title = Card.querySelector('.title')
+    const label = Card.querySelector('.priority')
+    const description = Card.querySelector('.description')
+    
     Card.classList.toggle('todo-card--expanded')
-    isExpanded = Card.classList.contains('todo-card--expanded')
-    handleExpansion(Card, isExpanded)
-  }
-}
-
-function handleExpansion(Card, isExpanded) {
-  const title = Card.querySelector('.title')
-  const label = Card.querySelector('.priority')
-  const description = Card.querySelector('.description')
-
-  label.style.display = isExpanded ? 'inline' : 'none'
-  description.style.display = isExpanded ? 'block' : 'none'
-  
-  if (isExpanded) {
-    title.setAttribute('contenteditable', true)
-  } else {
-    title.removeAttribute('contenteditable')
+    label.classList.toggle('open')
+    description.classList.toggle('open')
+    title.toggleAttribute('contenteditable')
   }
 }

@@ -3,6 +3,7 @@
 
   /*This item is shown only when the card is expanded*/
   display: none;
+  opacity: 0;
 
   background-color: var(--label-color);
   color: #fff;
@@ -12,10 +13,20 @@
   padding: 4px 8px;
   font-size: small;
 
-  transition: opacity 0.2s;
+  transition: opacity 0.2s, display 0.2s allow-discrete;
 
-  &:hover {
-    opacity: 0.75;
+  &.open {
+    opacity: 1;
+    display: block;
+
+    @starting-style {
+      opacity: 0;
+    }
+    
+    &:hover {
+      opacity: 0.75;
+    }
+
   }
 }
 
@@ -25,8 +36,10 @@
 
 .priority--medium {
   --label-color: #e5ff00;
+  color: #000;
 }
 
 .priority--low {
   --label-color: #22ff00;
+  color: #000;
 }
