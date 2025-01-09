@@ -52,13 +52,17 @@ function handleClick(event, checkbox) {
   const shouldCollapse = isExpanded && event.target === Card
 
   if (shouldExpand || shouldCollapse) {
-    const title = Card.querySelector('.title')
-    const label = Card.querySelector('.priority')
-    const description = Card.querySelector('.description')
-    
-    Card.classList.toggle('todo-card--expanded')
-    label.classList.toggle('hidden')
-    description.classList.toggle('open')
-    title.toggleAttribute('contenteditable')
+    setCardStyles(Card)
   }
+}
+
+function setCardStyles(Card) {
+  const title = Card.querySelector('.title')
+  const label = Card.querySelector('.priority')
+  const description = Card.querySelector('.description')
+
+  Card.classList.toggle('todo-card--expanded')
+  label.classList.toggle('hidden')
+  description.classList.toggle('open')
+  title.toggleAttribute('contenteditable')
 }
