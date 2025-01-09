@@ -1,8 +1,7 @@
 import './todosList.css'
-import deleteIconSrc from '@/assets/icons/delete.svg'
 import { createTodoCard } from './components/todoCard/todoCard.js'
 import { createFallback } from '@/components/fallback/fallback.js'
-import { createIcon } from '@/components/icon/icon.js'
+import { createDeleteTodoBtn } from './components/deleteTodoBtn/deleteTodoBtn.js'
 
 function createTodosList(project) {
   const todos = document.createElement('section')
@@ -27,21 +26,6 @@ function createTodosList(project) {
   })
 
   return todos
-}
-
-function createDeleteTodoBtn(todoId, project) {
-  const deleteIcon = createIcon({ src: deleteIconSrc, alt: 'Trash can icon' })
-
-  const deleteBtn = document.createElement('button')
-  deleteBtn.classList.add('icon-btn')
-  deleteBtn.appendChild(deleteIcon)
-
-  deleteBtn.addEventListener('click', () => {
-    project.removeTodo(todoId)
-    updateTodosList(project)
-  })
-
-  return deleteBtn
 }
 
 function updateTodosList(project) {
