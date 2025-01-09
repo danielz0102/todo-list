@@ -24,6 +24,7 @@ export function createTodoCard(todo, projectId) {
   })
   const title = createTitle(todo, projectId)
   const priorityLabel = createPriorityLabel('High')
+  priorityLabel.classList.add('hidden')
 
   row.append(checkbox, title, priorityLabel)
 
@@ -56,7 +57,7 @@ function handleClick(event, checkbox) {
     const description = Card.querySelector('.description')
     
     Card.classList.toggle('todo-card--expanded')
-    label.classList.toggle('open')
+    label.classList.toggle('hidden')
     description.classList.toggle('open')
     title.toggleAttribute('contenteditable')
   }
