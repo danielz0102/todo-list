@@ -5,8 +5,8 @@ import { createTodoCard } from './components/todoCard/todoCard.js'
 import { createFallback } from '@/components/fallback/fallback.js'
 import { createIcon } from '@/components/icon/icon.js'
 import { createProjectTitle } from './components/projectTitle/projectTitle.js'
+import { createDeleteProjectBtn } from './components/deleteProjectBtn/deleteProjectBtn.js'
 import { Todo } from '@/modules/Todo.js'
-import { Storage } from '@/modules/Storage.js'
 
 export function createProjectPage(project) {
   const wrapper = document.createElement('div')
@@ -68,23 +68,6 @@ function createDeleteTodoBtn(todoId, project) {
   })
 
   return deleteBtn
-}
-
-function createDeleteProjectBtn(projectId) {
-  const btn = document.createElement('button')
-  btn.textContent = 'Delete project'
-  btn.id = 'deleteProjectBtn'
-
-  btn.addEventListener('click', () => {
-    Storage.removeProject(projectId)
-    document.dispatchEvent(new CustomEvent('projectDeleted'), {
-      detail: {
-        id: projectId
-      }
-    })
-  })
-
-  return btn
 }
 
 function createTodos(project) {

@@ -42,23 +42,3 @@
   bottom: 25px;
   right: 25px;
 }
-
-#deleteProjectBtn {
-  border: none;
-  border-radius: 8px;
-  background-color: #f50000;
-  color: #fff;
-  font-weight: bold;
-  font-size: smaller;
-  padding: 8px 16px;
-  cursor: pointer;
-
-  position: absolute;
-  top: 25px;
-  right: 25px;
-
-  transition: opacity 0.2s;
-  &:hover {
-    opacity: 0.75;
-  }
-}
