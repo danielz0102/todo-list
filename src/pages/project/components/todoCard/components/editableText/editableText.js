@@ -1,5 +1,6 @@
 import './description.css'
 import { Storage } from '@/modules/Storage.js'
+import { handleKeyboard } from '@/pages/project/modules/handleKeyboard.js'
 
 const DEFAULT_DESCRIPTION = 'Add a description...'
 const DEFAULT_TITLE = 'Todo'
@@ -41,19 +42,6 @@ export function createTitle(todo, projectId) {
   )
 
   return title
-}
-
-function handleKeyboard(event, multiline) {
-  //To save content, press Enter or Escape
-  //If the content is multiline, Shift + Enter let line breaks
-  const hasBeenEdited = multiline ?
-  event.key === 'Enter' && !event.shiftKey || event.key === 'Escape'
-  : event.key === 'Enter' || event.key === 'Escape'
-
-  if (hasBeenEdited) {
-    event.preventDefault()
-    event.currentTarget.blur()
-  }
 }
 
 function handleEdition({
