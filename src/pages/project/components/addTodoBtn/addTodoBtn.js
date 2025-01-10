@@ -22,7 +22,7 @@ function handleClick(project) {
     title: 'New todo!',
     description: '',
     dueDate: 'Today',
-    priority: 'None'
+    priority: 'priority'
   }))
 
   updateTodosList(project)

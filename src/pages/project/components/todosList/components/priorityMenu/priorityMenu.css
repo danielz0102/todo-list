@@ -1,0 +1,21 @@
+#priorityMenu {
+  width: 200px;
+  text-align: center;
+  border: 1px solid var(--secondary-background);
+  border-radius: 8px;
+  padding: 8px;
+
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  gap: 4px;
+
+  opacity: 0;
+  transition-property: opacity, display, overlay;
+  transition-duration: 0.2s;
+  transition-behavior: allow-discrete;
+
+  &:popover-open {
+    opacity: 1;
+  }
+}

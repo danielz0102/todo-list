@@ -1,4 +1,4 @@
-const Priority = Object.freeze({
+const PRIORITIES = Object.freeze({
   LOW: 'low',
   MEDIUM: 'medium',
   HIGH: 'high'
@@ -24,4 +24,4 @@ class Todo {
   }
 }
 
-export { Priority, Todo }
+export { PRIORITIES, Todo }

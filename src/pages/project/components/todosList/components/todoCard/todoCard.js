@@ -23,7 +23,12 @@ export function createTodoCard(todo, projectId) {
     card: Card
   })
   const title = createTitle(todo, projectId)
-  const priorityLabel = createPriorityLabel('High')
+  const priorityLabel = createPriorityLabel({
+    priority: todo.priority,
+    editable: true,
+    todo,
+    projectId
+  })
   priorityLabel.classList.add('hidden')
 
   row.append(checkbox, title, priorityLabel)

@@ -7,8 +7,10 @@
   font-size: small;
   width: fit-content;
   padding: 4px 8px;
+  border: none;
   border-radius: 16px;
-  
+  cursor: pointer;
+
   display: none;
   opacity: 0;
   transition-property: opacity, display;
