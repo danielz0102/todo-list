@@ -33,6 +33,7 @@ export function createTodoCard(todo, projectId) {
   dueDate.classList.add('fallback')
 
   const description = createDescription(todo, projectId)
+  description.classList.add('hidden')
 
   Card.append(
     row,
@@ -63,6 +64,6 @@ function setCardStyles(Card) {
 
   Card.classList.toggle('todo-card--expanded')
   label.classList.toggle('hidden')
-  description.classList.toggle('open')
+  description.classList.toggle('hidden')
   title.toggleAttribute('contenteditable')
 }

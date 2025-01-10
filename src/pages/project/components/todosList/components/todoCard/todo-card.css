@@ -17,8 +17,7 @@
     gap 1s,
     border-width 0.2s,
     border-radius 0.2s,
-    background-color 0.2s
-  ;
+    background-color 0.2s;
 
   &:not(.todo-card--completed):hover {
     background-color: var(--main-background);
@@ -43,7 +42,7 @@
 
 .todo-card--completed {
   background-color: var(--secondary-background);
-  
+
   & .title {
     text-decoration: line-through;
   }
