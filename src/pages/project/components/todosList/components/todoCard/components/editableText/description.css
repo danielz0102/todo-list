@@ -5,7 +5,7 @@
   white-space: pre-wrap;
   width: 100%;
 
-  transition-property: opacity, display, color;
+  transition-property: opacity, display, color, text-decoration;
   transition-duration: 0.25s;
   transition-behavior: allow-discrete;
 

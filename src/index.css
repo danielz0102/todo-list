@@ -55,4 +55,11 @@ hr {
 [contenteditable] {
   outline: none;
   cursor: text;
+  text-decoration: 1px underline transparent;
+
+  transition: text-decoration 0.25s;
+
+  &:hover {
+    text-decoration-color: currentColor;
+  }
 }
