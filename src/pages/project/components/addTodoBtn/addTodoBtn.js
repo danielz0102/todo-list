@@ -1,8 +1,10 @@
 import './addTodoBtn.css'
 import addIconSrc from '@/assets/icons/add.svg'
-import { createIcon } from '@/components/icon/icon.js'
 import { Todo } from '@/modules/Todo.js'
+import { DATE_FORMAT } from '@/modules/consts.js'
+import { createIcon } from '@/components/icon/icon.js'
 import { updateTodosList } from '../todosList/todosList.js'
+import { format } from 'date-fns'
 
 export function createAddTodoBtn(project) {
   const addIcon = createIcon({ src: addIconSrc, alt: 'Plus icon' })
@@ -21,7 +23,7 @@ function handleClick(project) {
   project.addTodo(new Todo({
     title: 'New todo!',
     description: '',
-    dueDate: 'Today',
+    dueDate: format(new Date(), DATE_FORMAT),
     priority: 'priority'
   }))
 

@@ -38,6 +38,10 @@
   & > * {
     width: fit-content;
   }
+
+  & .dueDate:hover {
+    font-weight: bold;
+  }
 }
 
 .todo-card--completed {

@@ -2,6 +2,7 @@ import './todo-card.css'
 import { createCheckbox } from './components/checkbox/checkbox.js'
 import { createDescription, createTitle } from './components/editableText/editableText.js'
 import { createPriorityLabel } from './components/priorityLabel/priorityLabel.js'
+import { createDueDate } from './components/dueDate/dueDate.js'
 
 export function createTodoCard(todo, projectId) {
   const Card = document.createElement('article')
@@ -33,10 +34,7 @@ export function createTodoCard(todo, projectId) {
 
   row.append(checkbox, title, priorityLabel)
 
-  const dueDate = document.createElement('p')
-  dueDate.textContent = todo.dueDate
-  dueDate.classList.add('fallback')
-
+  const dueDate = createDueDate(todo, projectId, true)
   const description = createDescription(todo, projectId)
   description.classList.add('hidden')
 
@@ -58,17 +56,19 @@ function handleClick(event, checkbox) {
   const shouldCollapse = isExpanded && event.target === Card
 
   if (shouldExpand || shouldCollapse) {
-    setCardStyles(Card)
+    setCardStyles(Card, shouldExpand)
   }
 }
 
-function setCardStyles(Card) {
+function setCardStyles(Card, isExpanded) {
   const title = Card.querySelector('.title')
   const label = Card.querySelector('.priority')
   const description = Card.querySelector('.description')
+  const date = Card.querySelector('.dueDate')
 
   Card.classList.toggle('todo-card--expanded')
   label.classList.toggle('hidden')
   description.classList.toggle('hidden')
   title.toggleAttribute('contenteditable')
+  date.editable = isExpanded
 }

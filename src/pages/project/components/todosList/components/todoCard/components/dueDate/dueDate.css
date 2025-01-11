@@ -1,0 +1,10 @@
+.dueDate {
+  font-size: small;
+
+  transition: font-weight 0.25s;
+}
+
+/* Override flatpickr styles */
+.flatpickr-calendar {
+  font-family: "Nunito Variable", sans-serif;
+}
