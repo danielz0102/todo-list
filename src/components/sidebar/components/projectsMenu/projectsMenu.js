@@ -3,7 +3,6 @@ import { createItem } from '@/components/sidebar/components/item/item.js'
 import { createMenu } from '@/components/menu/menu.js'
 import { Storage } from '@/modules/Storage.js'
 import { Project } from '@/modules/Project.js'
-import { createAllProjectsPage } from '@/pages/allProjects/allProjects.js'
 import { sidebarIcons } from '@/components/sidebar/modules/sidebarIcons.js'
 import { dispatchRenderEvent } from '@/components/sidebar/modules/dispatchEvent.js'
 
@@ -45,10 +44,6 @@ function updateProjects() {
     fallback: params.fallback,
   })
   document.querySelector('#projectsMenu').replaceChildren(...newMenu.children)
-
-  if (document.querySelector('#allProjects')) {
-    dispatchRenderEvent({ page: createAllProjectsPage })
-  }
 }
 
 function setItems(projects) {

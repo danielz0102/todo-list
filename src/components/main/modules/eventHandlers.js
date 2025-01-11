@@ -1,5 +1,5 @@
-import { createAllProjectsPage } from '@/pages/allProjects/allProjects.js'
 import { createProjectPage } from '@/pages/project/project.js'
+import { createProjectDeletedPage } from '@/pages/projectDeleted/projectDeleted.js'
 import { Storage } from '@/modules/Storage.js'
 
 let newPage
@@ -24,7 +24,7 @@ function handleRendering(Main) {
 
 function handlePageDeleted(Main) {
   document.addEventListener('projectDeleted', () => {
-    newPage = createAllProjectsPage()
+    newPage = createProjectDeletedPage()
     Main.replaceChildren(newPage)
   })
 }

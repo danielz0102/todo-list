@@ -3,7 +3,7 @@ import { sidebarIcons } from '@/components/sidebar/modules/sidebarIcons.js'
 import { dispatchRenderEvent } from '@/components/sidebar/modules/dispatchEvent.js'
 import { createTodayPage } from '@/pages/today/today.js'
 import { createThisWeekPage } from '@/pages/thisWeek/thisWeek.js'
-import { createAllProjectsPage } from '@/pages/allProjects/allProjects.js'
+import { createThisMonthPage } from '@/pages/thisMonth/thisMonth.js'
 
 export const mainItems = [
   createItem({
@@ -17,8 +17,8 @@ export const mainItems = [
     clickHandler: () => dispatchRenderEvent({ page: createThisWeekPage })
   }),
   createItem({
-    text: 'All Projects',
+    text: 'This Month',
     icon: sidebarIcons.all(),
-    clickHandler: () => dispatchRenderEvent({ page: createAllProjectsPage })
+    clickHandler: () => dispatchRenderEvent({ page: createThisMonthPage })
   }),
 ]
