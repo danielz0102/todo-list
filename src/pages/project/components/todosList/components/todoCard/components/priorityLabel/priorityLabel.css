@@ -13,7 +13,7 @@
 
   display: none;
   opacity: 0;
-  transition-property: opacity, display;
+  transition-property: opacity, display, background-color;
   transition-duration: 0.25s;
   transition-behavior: allow-discrete;
   
@@ -21,15 +21,13 @@
     opacity: 1;
     display: block;
 
+    @starting-style {
+      opacity: 0;
+    }
+
     &:hover {
       opacity: 0.5;
     }
-  }
-}
-
-@starting-style {
-  .priority:not(.hidden) {
-    opacity: 0;
   }
 }
 
