@@ -1,5 +1,5 @@
 import './deleteProjectBtn.css'
-import { Storage } from '@/modules/Storage.js'
+import { createConfirmationModal } from './confirmationModal/confirmationModal.js'
 
 export function createDeleteProjectBtn(projectId) {
   const btn = document.createElement('button')
@@ -12,9 +12,7 @@ export function createDeleteProjectBtn(projectId) {
 }
 
 function handleClick(projectId) {
-  const options = { id: projectId }
-  const projectDeletedEvent = new CustomEvent('projectDeleted', { detail: options })
-
-  Storage.removeProject(projectId)
-  document.dispatchEvent(projectDeletedEvent)
+  const modal = createConfirmationModal(projectId)
+  document.querySelector('#app').appendChild(modal)
+  modal.showModal()
 }

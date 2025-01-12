@@ -1,0 +1,36 @@
+dialog {
+  opacity: 0;
+
+  transition-property: opacity, display, overlay;
+  transition-duration: 0.25s;
+  transition-behavior: allow-discrete;
+
+  &[open] {
+    opacity: 1;
+
+    @starting-style {
+      opacity: 0;
+    }
+  }
+}
+
+#confirmationDeleteProjectModal {
+  padding: 32px;
+  border: none;
+  border-radius: 8px;
+  text-align: center;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  & p {
+    margin-bottom: 8px;
+  }
+}
+
+#acceptBtn {
+  --btn-color: var(--danger);
+  margin-left: 8px;
+}
