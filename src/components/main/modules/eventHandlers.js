@@ -6,17 +6,9 @@ let newPage
 
 function handleRendering(Main) {
   document.addEventListener('renderMain', e => {
-    if (e.detail.projectId) {
-      const projects = Storage.getProjects()
-      const project = projects.find(project => project.id === e.detail.projectId)
-      newPage = createProjectPage(project)
-
-      Main.replaceChildren(newPage)
-
-      return
-    }
-
-    newPage = e.detail.createPage()
+    const projects = Storage.getProjects()
+    const project = projects.find(project => project.id === e.detail.projectId)
+    newPage = createProjectPage(project)
 
     Main.replaceChildren(newPage)
   })
